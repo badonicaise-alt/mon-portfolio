@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nika Studio</title>
+<title>Cinema Studio 4.0</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,74 +11,80 @@
 
 <!-- INTRO -->
 <div id="intro">
-    <div class="intro-logo">Nika Studio</div>
+    <div class="intro-logo">NIKA CINEMA EXPERIENCE</div>
 </div>
 
 <!-- NAV -->
-<nav class="navbar">
-    <div class="logo">🎬 Toyiboula</div>
+<nav class="navbar" id="navbar">
+    <div class="logo">🎬 BADO SOUND</div>
 </nav>
 
-<!-- HERO -->
-<section class="scene hero">
-    <h1>BADO ELVIS NICAISE</h1>
-    <p> Production Mixer | Sound Designer</p>
+<!-- HERO (SCENE 1) -->
+<section class="scene">
+    <div class="hero">
+        <h1>BADO ELVIS NICAISE</h1>
+        <p>Sound Designer | Post Production Cinema</p>
+    </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- SCENE 2 -->
 <section class="scene">
     <h2>Projets</h2>
-
     <div class="cards">
-        <div class="card">Production Expérimentale</div>
-        <div class="card">Documentaire</div>
+        <div class="card">Soweto</div>
+        <div class="card">Doc</div>
         <div class="card">Fiction</div>
     </div>
 </section>
 
-<!-- REEL -->
+<!-- SCENE 3 REEL -->
 <section class="scene">
     <h2>Sound Reel</h2>
 
     <audio id="audio" src="reel.mp3"></audio>
-
-    <button id="playBtn">▶ Play</button>
+    <button id="playBtn">Play</button>
 
     <canvas id="waveform"></canvas>
 </section>
 
-<!-- FILMOGRAPHY -->
+<!-- SCENE 4 -->
 <section class="scene">
     <h2>Filmography</h2>
 
-    <div class="project-card">Stay Hydrated by Simon Schares_ Production Mixer</div>
-    <div class="project-card">Gefallen by Julius Becher_Production Mixer</div>
-    <div class="project-card">Voix du Sahel by Okapi Prod_Production Mixer</div>
+    <div class="project-card">Soweto</div>
+    <div class="project-card">Documentaire</div>
 </section>
 
 <script>
-/* INTRO */
+
+/* =========================
+   INTRO
+========================= */
 window.addEventListener("load", () => {
-    setTimeout(() => {
-        document.getElementById("intro").style.opacity = "0";
-        setTimeout(() => document.getElementById("intro").remove(), 800);
-    }, 1500);
+    const intro = document.getElementById("intro");
+    setTimeout(() => intro.remove(), 1800);
 });
 
-/* SCENES FOCUS */
+/* =========================
+   CAMERA SCROLL (FOCUS SYSTEM)
+========================= */
 const scenes = document.querySelectorAll(".scene");
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
         if(e.isIntersecting){
             e.target.classList.add("active");
+        } else {
+            e.target.classList.remove("active");
         }
     });
-}, { threshold: 0.35 });
+}, { threshold: 0.4 });
 
 scenes.forEach(s => observer.observe(s));
 
-/* AUDIO */
+/* =========================
+   AUDIO ENGINE
+========================= */
 const audio = document.getElementById("audio");
 const canvas = document.getElementById("waveform");
 const ctx = canvas.getContext("2d");
@@ -112,16 +118,20 @@ function draw(){
 
     ctx.clearRect(0,0,canvas.width,canvas.height);
 
-    ctx.beginPath();
+    let glow = Math.sin(Date.now()*0.002)*10 + 20;
+
     ctx.strokeStyle = "#38bdf8";
     ctx.lineWidth = 2;
+    ctx.shadowBlur = glow;
+    ctx.shadowColor = "#38bdf8";
+
+    ctx.beginPath();
 
     let x = 0;
     let slice = canvas.width / dataArray.length;
 
     for(let i=0;i<dataArray.length;i++){
         let y = (dataArray[i]/128) * canvas.height/2;
-
         i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
         x += slice;
     }
@@ -141,6 +151,7 @@ document.getElementById("playBtn").onclick = () => {
         audio.pause();
     }
 };
+
 </script>
 
 </body>

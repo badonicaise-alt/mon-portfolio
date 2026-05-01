@@ -6,7 +6,7 @@ body {
     color: white;
 }
 
-/* léger effet lumière cinéma */
+/* lumière cinéma */
 body::before {
     content: "";
     position: fixed;
@@ -16,6 +16,11 @@ body::before {
     height: 100%;
     background: radial-gradient(circle at top, rgba(56,189,248,0.15), transparent 60%);
     pointer-events: none;
+}
+
+/* scroll smooth global */
+html {
+    scroll-behavior: smooth;
 }
 
 /* ===== NAVBAR STYLE NETFLIX ===== */
@@ -57,12 +62,14 @@ body::before {
 }
 
 /* ===== SECTIONS ===== */
-.container, .reel-player, .projects {
+.container,
+.reel-player,
+.projects {
     text-align: center;
     padding: 120px 20px 60px;
 }
 
-/* ===== TITRE PRINCIPAL ===== */
+/* ===== TITRES ===== */
 h1 {
     font-size: 56px;
     color: #38bdf8;
@@ -74,7 +81,7 @@ h2 {
     font-weight: 400;
 }
 
-/* ===== PARAGRAPHE ===== */
+/* ===== TEXTE ===== */
 p {
     max-width: 700px;
     margin: 20px auto;
@@ -92,7 +99,7 @@ audio {
     margin-top: 15px;
 }
 
-/* bouton style cinéma */
+/* bouton audio UNIQUE */
 #playBtn {
     background: #38bdf8;
     border: none;
@@ -108,29 +115,56 @@ audio {
     background: white;
 }
 
-/* ===== PROJETS STYLE CARDS CINÉMA ===== */
+/* progress */
+#progress {
+    width: 300px;
+    margin-top: 15px;
+}
+
+/* ===== PROJETS CINÉMA ===== */
 .projects {
     margin-top: 80px;
+    padding: 100px 20px;
 }
 
-.project {
-    background: rgba(30,41,59,0.8);
-    margin: 25px auto;
-    padding: 22px;
-    width: 65%;
-    border-radius: 12px;
-    text-align: left;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+.projects h2 {
+    text-align: center;
+    font-size: 40px;
+    color: #38bdf8;
+    margin-bottom: 40px;
+}
+
+/* cartes */
+.project-card {
+    background: rgba(15, 23, 42, 0.85);
     border-left: 3px solid #38bdf8;
-    transition: 0.3s;
+    margin: 20px auto;
+    padding: 20px;
+    width: 70%;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-.project:hover {
+.project-card:hover {
     transform: scale(1.02);
+    border-left: 3px solid white;
 }
 
-/* ===== ANIMATION CINÉMA ===== */
-.container, .projects, .reel-player {
+.project-card h3 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    color: #cbd5e1;
+    margin: 5px 0;
+}
+
+/* ===== ANIMATION APPARITION ===== */
+.container,
+.projects,
+.reel-player {
     animation: fadeIn 1.2s ease-in-out;
 }
 
@@ -144,8 +178,8 @@ audio {
         transform: translateY(0);
     }
 }
-/* ===== SHOWREEL PAGE ===== */
 
+/* ===== SHOWREEL ===== */
 .showreel-page {
     background: black;
     color: white;
@@ -171,8 +205,8 @@ audio {
     width: 400px;
     filter: drop-shadow(0 0 10px rgba(56,189,248,0.5));
 }
-/* ===== FULLSCREEN SHOWREEL CINÉMA ===== */
 
+/* ===== FULLSCREEN SHOWREEL ===== */
 .showreel-fullscreen {
     margin: 0;
     background: black;
@@ -183,7 +217,6 @@ audio {
     justify-content: center;
 }
 
-/* petit menu retour */
 .mini-nav {
     position: absolute;
     top: 20px;
@@ -195,7 +228,6 @@ audio {
     text-decoration: none;
 }
 
-/* centre écran */
 .showreel-center {
     text-align: center;
 }
@@ -211,22 +243,7 @@ audio {
     margin-bottom: 20px;
 }
 
-/* player minimaliste */
-#playBtn {
-    background: #38bdf8;
-    border: none;
-    padding: 12px 25px;
-    margin-top: 15px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-#progress {
-    width: 300px;
-    margin-top: 15px;
-}
 /* ===== INTRO CINÉMA ===== */
-
 #intro {
     position: fixed;
     width: 100%;
@@ -256,43 +273,33 @@ audio {
         transform: scale(1);
     }
 }
-/* ===== PROJETS CINÉMA STYLE STUDIO ===== */
 
-.projects {
+/* ===== FILM CREDITS ===== */
+.credits {
+    background: black;
+    color: white;
+    text-align: center;
     padding: 100px 20px;
+    overflow: hidden;
 }
 
-.projects h2 {
-    text-align: center;
-    font-size: 40px;
+.credits h2 {
     color: #38bdf8;
     margin-bottom: 40px;
 }
 
-/* cartes cinéma */
-.project-card {
-    background: rgba(15, 23, 42, 0.85);
-    border-left: 3px solid #38bdf8;
-    margin: 20px auto;
-    padding: 20px;
-    width: 70%;
-    border-radius: 10px;
-    transition: 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-}
-
-/* effet film hover */
-.project-card:hover {
-    transform: scale(1.02);
-    border-left: 3px solid white;
-}
-
-.project-card h3 {
-    color: white;
-    margin-bottom: 10px;
-}
-
-.project-card p {
+.credits-scroll {
+    animation: scrollCredits 15s linear infinite;
+    line-height: 2;
+    font-size: 18px;
     color: #cbd5e1;
-    margin: 5px 0;
+}
+
+@keyframes scrollCredits {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
 }

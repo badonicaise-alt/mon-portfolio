@@ -131,7 +131,7 @@ body::after {
 
 .project-menu {
   margin:20px auto;
-  width:min(600px,90%);
+  width:min(800px,90%);
 }
 
 .project-menu h3 {
@@ -151,21 +151,64 @@ body::after {
 .project-content {
   display:none;
   margin-top:10px;
-  padding:10px;
-  background:#0f172a;
-  border-radius:8px;
 }
 
 .project-content.active {
   display:block;
 }
 
-.project-content video,
-.project-content audio,
-.project-content img {
-  width:100%;
+/* Artistic project card */
+.project-card {
+  position:relative;
+  border-radius:12px;
+  overflow:hidden;
+  margin:20px 0;
+  box-shadow:0 6px 20px rgba(0,0,0,0.5);
+}
+
+.project-bg {
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  filter:brightness(0.5);
+}
+
+.project-info {
+  position:relative;
+  padding:20px;
+  color:white;
+}
+
+.project-info h4 {
+  font-size:22px;
+  margin-bottom:6px;
+  color:var(--accent);
+}
+
+.project-info .genre {
+  font-size:14px;
+  opacity:0.8;
+}
+
+.project-info .description {
+  font-size:15px;
   margin:10px 0;
-  border-radius:6px;
+}
+
+.project-info button {
+  padding:8px 16px;
+  background:var(--primary);
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  transition:0.25s ease;
+  font-weight:500;
+}
+
+.project-info button:hover {
+  background:var(--accent);
+  transform:scale(1.05);
 }
 
 /* =====================
@@ -219,7 +262,7 @@ button:hover {
   flex-direction:column;
   gap:20px;
   font-size:28px;
-  animation:scrollUp 40s linear infinite;
+  animation:scrollUp 25s linear infinite; /* faster */
 }
 
 .scrolling-credits:hover {
@@ -229,6 +272,30 @@ button:hover {
 @keyframes scrollUp {
   0% { transform:translateY(100%); }
   100% { transform:translateY(-100%); }
+}
+
+/* =====================
+   CONTACT
+===================== */
+#contact {
+  padding:100px 20px;
+  text-align:center;
+  background:#111827;
+}
+
+#contact h2 {
+  color:var(--accent);
+  margin-bottom:20px;
+}
+
+#contact a {
+  color:var(--primary);
+  text-decoration:none;
+  transition:0.3s;
+}
+
+#contact a:hover {
+  color:var(--accent);
 }
 
 /* =====================
@@ -274,5 +341,8 @@ button:hover {
   }
   .hero h1 {
     font-size:34px;
+  }
+  .project-info h4 {
+    font-size:18px;
   }
 }

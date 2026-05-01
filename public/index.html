@@ -2,105 +2,107 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bado Elvis Nicaise - Sound Designer</title>
+    <title>Portfolio - Bado Elvis Nicaise</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- INTRO -->
 <div id="intro">
     <h1>BADO SOUND</h1>
 </div>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-    <div class="logo">🎬 NIKA CORPORATION</div>
+<div class="film-scroll">
 
-    <ul>
-        <li><a href="#home">Accueil</a></li>
-        <li><a href="#projects">Projets</a></li>
-        <li><a href="#reel">Reel</a></li>
-    </ul>
-</nav>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">🎬 BADO SOUND</div>
 
-<!-- HERO -->
-<section id="home" class="hero">
+        <ul>
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="showreel.html">Showreel</a></li>
+            <li><a href="#projects">Projets</a></li>
+            <li><a href="#reel">Reel</a></li>
+        </ul>
+    </nav>
+
+    <!-- HOME -->
+    <section id="home" class="container">
+        <h1>Bado Elvis Nicaise</h1>
+        <h2>Chef opérateur son | Sound Designer | Cinéma & TV</h2>
+        <p>Portfolio de création sonore pour le cinéma, la télévision et les documentaires.</p>
+    </section>
+
+    <!-- REEL -->
+    <section id="reel" class="reel-player">
+        <h2>🎧 Sound Reel</h2>
+
+        <audio id="audio" src="reel.mp3"></audio>
+        <button id="playBtn">▶ Play</button>
+        <canvas id="waveform"></canvas>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="projects">
+
+        <h2>🎬 Projets</h2>
+
+        <div class="project-card">Soweto</div>
+        <div class="project-card">Documentaire</div>
+        <div class="project-card">Fiction</div>
+
+    </section>
+
+</div>
+<section class="hero">
+
     <div class="hero-content">
         <h1>BADO ELVIS NICAISE</h1>
         <p>Chef opérateur son | Sound Designer | Cinéma & TV</p>
     </div>
+
 </section>
 
-<!-- PROJETS RAPIDES -->
 <section class="row">
+
     <h2>🎬 Projets Cinéma</h2>
 
     <div class="cards">
+
         <div class="card">Soweto</div>
         <div class="card">Documentaire</div>
         <div class="card">Fiction</div>
+
     </div>
+
 </section>
-
-<!-- AUDIO REEL -->
-<section id="reel" class="reel-player">
-    <h2>🎧 Sound Reel</h2>
-
-    <audio id="audio" src="reel.mp3"></audio>
-
-    <button id="playBtn">▶ Play</button>
-
-    <canvas id="waveform"></canvas>
-</section>
-
-<!-- PROJETS -->
 <section id="projects" class="projects">
 
-    <h2>🎬 Filmography</h2>
+    <h2>🎬 Filmography / Projets sonores</h2>
 
     <div class="project-card">
         <h3>🎧 Soweto</h3>
-        <p>Dramatique sonore historique</p>
+        <p><strong>Type :</strong> Dramatique sonore historique</p>
+        <p><strong>Rôle :</strong> Sound design & montage audio</p>
+        <p><strong>Univers :</strong> Afrique du Sud, tension politique, immersion réaliste</p>
     </div>
 
     <div class="project-card">
-        <h3>🎥 Documentaire</h3>
-        <p>Mixage & prise de son</p>
+        <h3>🎥 Documentaire - Voix du terrain</h3>
+        <p><strong>Type :</strong> Documentaire</p>
+        <p><strong>Rôle :</strong> Mixage son / prise de son</p>
+        <p><strong>Univers :</strong> Interview, ambiance naturelle, reportage</p>
     </div>
 
     <div class="project-card">
-        <h3>🎬 Fiction</h3>
-        <p>Sound design</p>
+        <h3>🎬 Fiction - Les Enfants du Silence</h3>
+        <p><strong>Type :</strong> Fiction cinéma</p>
+        <p><strong>Rôle :</strong> Sound design / création d’univers sonore</p>
+        <p><strong>Univers :</strong> Village africain, drame, satire, mémoire</p>
     </div>
 
 </section>
-
-<!-- CREDITS -->
-<section class="credits">
-    <h2>Film Credits</h2>
-
-    <div class="credits-scroll">
-        <p>BADO ELVIS NICAISE</p>
-        <p>Sound Designer</p>
-        <p>Chef opérateur son</p>
-    </div>
-</section>
-
-<!-- SCRIPT -->
 <script>
-
-// INTRO
-window.addEventListener("load", () => {
-    const intro = document.getElementById("intro");
-    setTimeout(() => {
-        intro.style.opacity = "0";
-        setTimeout(() => intro.style.display = "none", 1000);
-    }, 2000);
-});
-
-// AUDIO
 const audio = document.getElementById("audio");
 const canvas = document.getElementById("waveform");
 const ctx = canvas.getContext("2d");
@@ -129,24 +131,56 @@ function drawWave() {
     requestAnimationFrame(drawWave);
 
     analyser.getByteTimeDomainData(dataArray);
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    ctx.lineWidth = 2;
     ctx.strokeStyle = "#38bdf8";
+
     ctx.beginPath();
 
     let sliceWidth = canvas.width / dataArray.length;
     let x = 0;
 
     for (let i = 0; i < dataArray.length; i++) {
-        let y = (dataArray[i] / 128.0) * canvas.height / 2;
-        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        let v = dataArray[i] / 128.0;
+        let y = v * canvas.height / 2;
+
+        if (i === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+
         x += sliceWidth;
     }
 
     ctx.stroke();
 }
 
-// PLAY
+/* ===== SCRUB (DRAG AUDIO LIKE PRO TOOLS) ===== */
+
+function scrub(e) {
+    const rect = canvas.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const percent = clickX / rect.width;
+
+    audio.currentTime = percent * audio.duration;
+}
+
+canvas.addEventListener("click", scrub);
+
+/* BONUS : drag en temps réel */
+let isDragging = false;
+
+canvas.addEventListener("mousedown", () => isDragging = true);
+canvas.addEventListener("mouseup", () => isDragging = false);
+
+canvas.addEventListener("mousemove", (e) => {
+    if (isDragging) scrub(e);
+});
+
+/* PLAY BUTTON */
 document.getElementById("playBtn").addEventListener("click", () => {
 
     if (!audioCtx) initAudio();
@@ -159,8 +193,36 @@ document.getElementById("playBtn").addEventListener("click", () => {
         audio.pause();
     }
 });
-
 </script>
+<section class="credits">
+
+    <h2>Film Credits</h2>
+
+    <div class="credits-scroll">
+
+        <p>BADO ELVIS NICAISE</p>
+        <p>Sound Designer</p>
+        <p>Chef opérateur son</p>
+
+        <br>
+
+        <p>SOWETO</p>
+        <p>Dramatique sonore - 2026</p>
+        <p>Sound Design & Montage</p>
+
+        <br>
+
+        <p>DOCUMENTAIRE</p>
+        <p>Mixage & prise de son terrain</p>
+
+        <br>
+
+        <p>FICTION - LES ENFANTS DU SILENCE</p>
+        <p>Création d’univers sonore</p>
+
+    </div>
+
+</section>
 
 </body>
 </html>

@@ -320,46 +320,6 @@ button:hover {
 }
 
 /* =====================
-   ADMIN MENU
-===================== */
-#admin {
-  padding:30px 20px;
-  background:#1b263a;
-  color:var(--accent);
-  border-top:2px solid var(--primary);
-}
-
-#admin h2 {
-  margin-bottom:15px;
-  color:var(--primary);
-}
-
-#editor {
-  width:100%;
-  min-height:200px;
-  background:#0f172a;
-  color:var(--text);
-  border:1px solid var(--primary);
-  border-radius:8px;
-  padding:10px;
-  font-family:monospace;
-}
-
-#admin button {
-  margin-top:10px;
-  padding:10px 20px;
-  background:var(--primary);
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-#admin button:hover {
-  background:var(--accent);
-}
-
-/* =====================
    CURSOR + Ripple
 ===================== */
 .cursor {
@@ -386,4 +346,5 @@ button:hover {
 
 @keyframes rippleAnim {
   from { transform:translate(-50%,-50%) scale(0.5); opacity:1; }
-  to { transform:translate(-50%
+  to { transform:translate(-50%,-50%) scale(2); opacity:0; }
+}

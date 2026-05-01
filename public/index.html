@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Bado Elvis Nicaise</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bado Elvis Nicaise - Portfolio Son</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -14,185 +14,153 @@
     <h1>BADO SOUND</h1>
 </div>
 
-<!-- NAVBAR -->
+<!-- NAV -->
 <nav class="navbar">
     <div class="logo">🎬 BADO SOUND</div>
-
     <ul>
         <li><a href="#home">Accueil</a></li>
-        <li><a href="#projects">Projets</a></li>
         <li><a href="#reel">Reel</a></li>
-        <li><a href="showreel.html">Showreel</a></li>
+        <li><a href="#projects">Projets</a></li>
     </ul>
 </nav>
 
-<!-- WRAPPER -->
-<div class="film-scroll">
+<!-- HERO -->
+<section id="home" class="hero reveal">
+    <div class="hero-content">
+        <h1>BADO ELVIS NICAISE</h1>
+        <p>Chef opérateur son | Sound Designer | Cinéma & TV</p>
+    </div>
+</section>
 
-    <!-- HERO -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>BADO ELVIS NICAISE</h1>
-            <p>Chef opérateur son | Sound Designer | Cinéma & TV</p>
-        </div>
-    </section>
+<!-- PROJETS QUICK -->
+<section class="row reveal">
+    <h2>🎬 Projets Cinéma</h2>
+    <div class="cards">
+        <div class="card">Soweto</div>
+        <div class="card">Documentaire</div>
+        <div class="card">Fiction</div>
+    </div>
+</section>
 
-    <!-- PROJETS PREVIEW -->
-    <section class="row">
-        <h2>🎬 Projets Cinéma</h2>
+<!-- AUDIO -->
+<section id="reel" class="reel reveal">
+    <h2>🎧 Sound Reel</h2>
 
-        <div class="cards">
-            <div class="card">Soweto</div>
-            <div class="card">Documentaire</div>
-            <div class="card">Fiction</div>
-        </div>
-    </section>
+    <audio id="audio" src="reel.mp3"></audio>
+    <button id="playBtn">▶ Play</button>
 
-    <!-- REEL AUDIO -->
-    <section id="reel" class="reel-player">
-        <h2>🎧 Sound Reel</h2>
+    <canvas id="waveform"></canvas>
+</section>
 
-        <audio id="audio" src="reel.mp3"></audio>
-        <button id="playBtn">▶ Play</button>
-        <canvas id="waveform"></canvas>
-    </section>
+<!-- PROJECTS -->
+<section id="projects" class="projects reveal">
+    <h2>🎬 Filmography</h2>
 
-    <!-- PROJECTS DETAILS -->
-    <section id="projects" class="projects">
+    <div class="project-card">Soweto - Sound Design</div>
+    <div class="project-card">Documentaire - Mixage</div>
+    <div class="project-card">Fiction - Création sonore</div>
+</section>
 
-        <h2>🎬 Filmography / Projets sonores</h2>
+<!-- CREDITS -->
+<section class="credits reveal">
+    <h2>Film Credits</h2>
 
-        <div class="project-card">
-            <h3>Soweto</h3>
-            <p>Dramatique sonore historique</p>
-            <p>Sound design & montage audio</p>
-        </div>
-
-        <div class="project-card">
-            <h3>Documentaire</h3>
-            <p>Mixage & prise de son</p>
-        </div>
-
-        <div class="project-card">
-            <h3>Fiction</h3>
-            <p>Sound design & création sonore</p>
-        </div>
-
-    </section>
-
-    <!-- CREDITS -->
-    <section class="credits">
-        <h2>Film Credits</h2>
-
-        <div class="credits-scroll">
-            <p>BADO ELVIS NICAISE</p>
-            <p>Sound Designer</p>
-            <p>Chef opérateur son</p>
-
-            <br>
-
-            <p>SOWETO - 2026</p>
-            <p>Sound Design & Montage</p>
-
-            <br>
-
-            <p>DOCUMENTAIRE</p>
-            <p>Mixage & prise de son</p>
-
-            <br>
-
-            <p>FICTION - LES ENFANTS DU SILENCE</p>
-            <p>Création d’univers sonore</p>
-        </div>
-    </section>
-
-</div>
+    <div class="credits-scroll">
+        <p>BADO ELVIS NICAISE</p>
+        <p>Sound Designer</p>
+        <p>Chef opérateur son</p>
+        <br>
+        <p>SOWETO - 2026</p>
+        <p>Sound Design & Montage</p>
+    </div>
+</section>
 
 <!-- INTRO SCRIPT -->
 <script>
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
     const intro = document.getElementById("intro");
 
     setTimeout(() => {
         intro.style.opacity = "0";
-
-        setTimeout(() => {
-            intro.style.display = "none";
-        }, 1000);
-
-    }, 2000);
+        setTimeout(() => intro.style.display = "none", 800);
+    }, 1800);
 });
 </script>
 
-<!-- AUDIO SCRIPT -->
+<!-- REVEAL SCROLL -->
 <script>
-window.addEventListener("DOMContentLoaded", () => {
-
-    const audio = document.getElementById("audio");
-    const canvas = document.getElementById("waveform");
-    const ctx = canvas.getContext("2d");
-
-    if (!audio || !canvas) return;
-
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-
-    let audioCtx;
-    let analyser;
-    let source;
-    let dataArray;
-
-    function initAudio() {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        analyser = audioCtx.createAnalyser();
-
-        source = audioCtx.createMediaElementSource(audio);
-        source.connect(analyser);
-        analyser.connect(audioCtx.destination);
-
-        analyser.fftSize = 512;
-        dataArray = new Uint8Array(analyser.frequencyBinCount);
-    }
-
-    function drawWave() {
-        requestAnimationFrame(drawWave);
-
-        analyser.getByteTimeDomainData(dataArray);
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.beginPath();
-
-        let x = 0;
-        let slice = canvas.width / dataArray.length;
-
-        for (let i = 0; i < dataArray.length; i++) {
-            let v = dataArray[i] / 128.0;
-            let y = v * canvas.height / 2;
-
-            if (i === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-
-            x += slice;
-        }
-
-        ctx.strokeStyle = "#38bdf8";
-        ctx.lineWidth = 2;
-        ctx.stroke();
-    }
-
-    document.getElementById("playBtn").addEventListener("click", () => {
-
-        if (!audioCtx) initAudio();
-
-        if (audio.paused) {
-            audio.play();
-            audioCtx.resume();
-            drawWave();
-        } else {
-            audio.pause();
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("active");
         }
     });
+}, { threshold: 0.2 });
 
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+
+<!-- AUDIO -->
+<script>
+const audio = document.getElementById("audio");
+const canvas = document.getElementById("waveform");
+const ctx = canvas.getContext("2d");
+
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+
+let audioCtx, analyser, source, dataArray;
+
+function initAudio() {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioCtx.createAnalyser();
+
+    source = audioCtx.createMediaElementSource(audio);
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+
+    analyser.fftSize = 512;
+    dataArray = new Uint8Array(analyser.frequencyBinCount);
+}
+
+function draw() {
+    requestAnimationFrame(draw);
+    if (!analyser) return;
+
+    analyser.getByteTimeDomainData(dataArray);
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#38bdf8";
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = "#38bdf8";
+
+    ctx.beginPath();
+
+    let x = 0;
+    let slice = canvas.width / dataArray.length;
+
+    for (let i = 0; i < dataArray.length; i++) {
+        let y = (dataArray[i] / 128.0) * canvas.height / 2;
+
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        x += slice;
+    }
+
+    ctx.stroke();
+}
+
+document.getElementById("playBtn").addEventListener("click", () => {
+    if (!audioCtx) initAudio();
+
+    if (audio.paused) {
+        audio.play();
+        audioCtx.resume();
+        draw();
+    } else {
+        audio.pause();
+    }
 });
 </script>
 

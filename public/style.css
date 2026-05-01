@@ -144,3 +144,30 @@ audio {
         transform: translateY(0);
     }
 }
+/* ===== SHOWREEL PAGE ===== */
+
+.showreel-page {
+    background: black;
+    color: white;
+    text-align: center;
+}
+
+.showreel-container {
+    margin-top: 150px;
+}
+
+.showreel-container h1 {
+    font-size: 60px;
+    color: #38bdf8;
+    letter-spacing: 2px;
+}
+
+.showreel-container p {
+    color: #94a3b8;
+    margin-bottom: 30px;
+}
+
+.showreel-container audio {
+    width: 400px;
+    filter: drop-shadow(0 0 10px rgba(56,189,248,0.5));
+}

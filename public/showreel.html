@@ -6,27 +6,49 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="showreel-page">
+<body class="showreel-fullscreen">
 
-<nav class="navbar">
-    <div class="logo">🎬 SHOWREEL</div>
-
-    <ul>
-        <li><a href="index.html">Accueil</a></li>
-    </ul>
+<nav class="mini-nav">
+    <a href="index.html">← Retour</a>
 </nav>
 
-<section class="showreel-container">
+<div class="showreel-center">
 
-    <h1>Sound Design Showreel</h1>
+    <h1>SHOWREEL SOUND DESIGN</h1>
 
-    <p>Expérience sonore immersive - Cinéma & TV</p>
+    <p>Immersive cinematic audio experience</p>
 
-    <audio controls>
-        <source src="reel.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="audio" src="reel.mp3"></audio>
 
-</section>
+    <button id="playBtn" onclick="togglePlay()">▶ Play</button>
+
+    <input type="range" id="progress" value="0">
+
+</div>
+
+<script>
+const audio = document.getElementById("audio");
+const playBtn = document.getElementById("playBtn");
+const progress = document.getElementById("progress");
+
+function togglePlay() {
+    if (audio.paused) {
+        audio.play();
+        playBtn.textContent = "⏸ Pause";
+    } else {
+        audio.pause();
+        playBtn.textContent = "▶ Play";
+    }
+}
+
+audio.addEventListener("timeupdate", () => {
+    progress.value = (audio.currentTime / audio.duration) * 100;
+});
+
+progress.addEventListener("input", () => {
+    audio.currentTime = (progress.value / 100) * audio.duration;
+});
+</script>
 
 </body>
 </html>

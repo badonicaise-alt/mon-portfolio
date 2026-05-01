@@ -46,6 +46,40 @@ body::after {
 }
 
 /* =====================
+   INTRO (Netflix-like)
+===================== */
+#intro {
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+  animation:introFade 3s forwards;
+}
+
+.intro-logo {
+  font-family:"Bebas Neue",sans-serif;
+  font-size:clamp(40px,8vw,100px);
+  color:var(--accent);
+  letter-spacing:4px;
+  opacity:0;
+  animation:introZoom 2s ease forwards;
+}
+
+@keyframes introZoom {
+  0% { opacity:0; transform:scale(0.5); }
+  50% { opacity:1; transform:scale(1.2); }
+  100% { opacity:1; transform:scale(1); }
+}
+
+@keyframes introFade {
+  0% { opacity:1; }
+  100% { opacity:0; visibility:hidden; }
+}
+
+/* =====================
    NAVBAR
 ===================== */
 .navbar {
@@ -129,40 +163,12 @@ body::after {
   padding:100px 20px;
 }
 
-.project-menu {
-  margin:20px auto;
-  width:min(800px,90%);
-}
-
-.project-menu h3 {
-  background:#111827;
-  padding:14px;
-  border-left:3px solid var(--primary);
-  border-radius:8px;
-  cursor:pointer;
-  transition:0.3s ease;
-}
-
-.project-menu h3:hover {
-  background:#1b263a;
-  border-color:var(--accent);
-}
-
-.project-content {
-  display:none;
-  margin-top:10px;
-}
-
-.project-content.active {
-  display:block;
-}
-
-/* Artistic project card */
 .project-card {
   position:relative;
   border-radius:12px;
   overflow:hidden;
-  margin:20px 0;
+  margin:20px auto;
+  width:min(800px,90%);
   box-shadow:0 6px 20px rgba(0,0,0,0.5);
 }
 
@@ -196,19 +202,19 @@ body::after {
   margin:10px 0;
 }
 
-.project-info button {
-  padding:8px 16px;
+.play-btn {
+  font-size:20px;
+  padding:8px 14px;
   background:var(--primary);
   border:none;
-  border-radius:20px;
+  border-radius:50%;
   cursor:pointer;
   transition:0.25s ease;
-  font-weight:500;
 }
 
-.project-info button:hover {
+.play-btn:hover {
   background:var(--accent);
-  transform:scale(1.05);
+  transform:scale(1.1);
 }
 
 /* =====================
@@ -262,7 +268,8 @@ button:hover {
   flex-direction:column;
   gap:20px;
   font-size:28px;
-  animation:scrollUp 25s linear infinite; /* faster */
+  font-family:"Cinzel",serif; /* cinematic font */
+  animation:scrollUp 20s linear infinite; /* faster */
 }
 
 .scrolling-credits:hover {
@@ -298,6 +305,37 @@ button:hover {
   color:var(--accent);
 }
 
+.photo-gallery {
+  margin-top:20px;
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.photo-gallery img {
+  width:150px;
+  height:150px;
+  object-fit:cover;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* =====================
+   ADMIN MENU (hidden)
+===================== */
+#admin {
+  padding:40px 20px;
+  background:#0b1220;
+  color:var(--accent);
+}
+
+#fileList div {
+  margin:5px 0;
+  font-size:14px;
+  color:var(--text);
+}
+
 /* =====================
    CUSTOM CURSOR + Ripple
 ===================== */
@@ -331,18 +369,4 @@ button:hover {
 /* =====================
    RESPONSIVE
 ===================== */
-@media(max-width:768px){
-  .navbar ul {
-    gap:8px;
-    flex-wrap:wrap;
-  }
-  .navbar a {
-    font-size:10px;
-  }
-  .hero h1 {
-    font-size:34px;
-  }
-  .project-info h4 {
-    font-size:18px;
-  }
-}
+@media(max-width:

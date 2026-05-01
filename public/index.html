@@ -6,13 +6,18 @@
   <title>Bado Elvis Nicaise Portfolio</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
   <!-- Custom Cursor -->
   <div class="cursor"></div>
+
+  <!-- Netflix-like Intro -->
+  <div id="intro">
+    <h1 class="intro-logo">TOYIBOULA</h1>
+  </div>
 
   <!-- Navigation -->
   <nav class="navbar">
@@ -36,76 +41,25 @@
   <section id="projects">
     <h2>Projects</h2>
 
-    <!-- Soweto -->
-    <div class="project-menu">
-      <h3 onclick="toggleSection('soweto')">Soweto</h3>
-      <div id="soweto" class="project-content">
-        <div class="project-card">
-          <div class="project-bg" style="background-image:url('soweto-bg.jpg')"></div>
-          <div class="project-info">
-            <h4>Soweto</h4>
-            <p class="genre">Documentary</p>
-            <p class="description">A powerful documentary exploring Soweto’s cultural soundscape.</p>
-            <button onclick="playMedia('soweto-sound.mp3')">Play Sound</button>
-          </div>
-        </div>
+    <!-- Example Project Card -->
+    <div class="project-card">
+      <div class="project-bg" style="background-image:url('soweto-bg.jpg')"></div>
+      <div class="project-info">
+        <h4>Soweto</h4>
+        <p class="genre">Documentary</p>
+        <p class="description">A powerful documentary exploring Soweto’s cultural soundscape.</p>
+        <button class="play-btn" onclick="playMedia('soweto-sound.mp3')">▶</button>
       </div>
     </div>
 
-    <!-- Documentary -->
-    <div class="project-menu">
-      <h3 onclick="toggleSection('documentary')">Documentary</h3>
-      <div id="documentary" class="project-content">
-        <div class="project-card">
-          <div class="project-bg" style="background-image:url('doc-bg.jpg')"></div>
-          <div class="project-info">
-            <h4>Documentary Project</h4>
-            <p class="genre">Documentary</p>
-            <p class="description">Exploring human stories through sound and image.</p>
-            <button onclick="playMedia('doc-sound.mp3')">Play Sound</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Fiction -->
-    <div class="project-menu">
-      <h3 onclick="toggleSection('fiction')">Fiction</h3>
-      <div id="fiction" class="project-content">
-        <div class="project-card">
-          <div class="project-bg" style="background-image:url('fiction-bg.jpg')"></div>
-          <div class="project-info">
-            <h4>Fiction Film</h4>
-            <p class="genre">Fiction</p>
-            <p class="description">A creative sound design journey in fictional storytelling.</p>
-            <button onclick="playMedia('fiction-sound.mp3')">Play Sound</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Film -->
-    <div class="project-menu">
-      <h3 onclick="toggleSection('film')">Film</h3>
-      <div id="film" class="project-content">
-        <div class="project-card">
-          <div class="project-bg" style="background-image:url('film-bg.jpg')"></div>
-          <div class="project-info">
-            <h4>Film Sets</h4>
-            <p class="genre">Behind the Scenes</p>
-            <p class="description">Photos from sets where I worked as sound engineer and boom operator.</p>
-            <button onclick="viewGallery()">View Photos</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Add as many project-cards as you want -->
   </section>
 
   <!-- Showreel Section -->
   <section id="showreel">
     <h2>Sound Reel</h2>
     <audio id="audio" src="reel.mp3"></audio>
-    <button id="play">Play / Pause</button>
+    <button id="play">▶ / ❚❚</button>
     <canvas id="waveform"></canvas>
   </section>
 
@@ -128,24 +82,45 @@
     <p>Email: <a href="mailto:yourmail@example.com">yourmail@example.com</a></p>
     <p>Instagram: <a href="https://instagram.com/yourprofile" target="_blank">@yourprofile</a></p>
     <p>Website: <a href="https://yourwebsite.com" target="_blank">yourwebsite.com</a></p>
+    <div class="photo-gallery">
+      <img src="yourphoto1.jpg" alt="Portrait">
+      <img src="yourphoto2.jpg" alt="On set">
+    </div>
   </section>
 
-  <!-- JavaScript directly in HTML -->
+  <!-- Hidden Admin Menu (only for you) -->
+  <section id="admin" style="display:none;">
+    <h2>Admin Menu</h2>
+    <input type="file" id="fileInput" multiple accept="audio/*,video/*,image/*">
+    <div id="fileList"></div>
+  </section>
+
+  <!-- JavaScript -->
   <script>
-  /* Expandable Project Menus */
-  function toggleSection(id) {
-    const section = document.getElementById(id);
-    section.classList.toggle("active");
+  /* Intro Animation */
+  window.addEventListener("load", () => {
+    const intro = document.getElementById("intro");
+    setTimeout(()=>intro.style.display="none", 3000);
+  });
+
+  /* Expandable Admin Menu */
+  const fileInput = document.getElementById("fileInput");
+  const fileList = document.getElementById("fileList");
+  if(fileInput){
+    fileInput.addEventListener("change", () => {
+      fileList.innerHTML = "";
+      [...fileInput.files].forEach(f=>{
+        let div=document.createElement("div");
+        div.textContent="🎬 "+f.name;
+        fileList.appendChild(div);
+      });
+    });
   }
 
   /* Play Media */
   function playMedia(src) {
     const audio = new Audio(src);
     audio.play();
-  }
-
-  function viewGallery() {
-    alert("Gallery view coming soon!");
   }
 
   /* Cursor + Ripple */

@@ -187,25 +187,17 @@ button{
 
 <body>
 
-<nav>
-  <div class="logo">NIKA CORPORATION</div>
+<nav class="navbar">
+  <div class="logo">🎬 NIKA CORPORATION</div>
 
-  <div class="menu">
-    <a href="#">Accueil</a>
-
-    <div class="dropdown">
-      <a href="#">Projets ▾</a>
-      <div class="dropdown-content">
-        <a href="#">Film</a>
-        <a href="#">Doc</a>
-        <a href="#">Fiction</a>
-      </div>
-    </div>
-
-    <a href="#">Showreel</a>
-  </div>
+  <ul>
+    <li><a href="#home">Accueil</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#upload">Upload</a></li>
+    <li><a href="#reel">Showreel</a></li>
+    <li><a href="#">TOYIBOULA</a></li>
+  </ul>
 </nav>
-
 <section class="hero">
   <h1>TOYIBOULA</h1>
   <p>Production Mixer & Sound Designer</p>
@@ -229,17 +221,13 @@ button{
   <canvas id="waveform"></canvas>
 </section>
 
-<section>
-  <h2>Importer médias</h2>
+<section id="upload" class="scene">
+  <h2>📁 Import Studio</h2>
 
-  <div class="upload-box">
-    <input type="file" id="file" multiple>
-    <p>Ajoute sons / vidéos sans coder</p>
+  <input type="file" id="fileInput" accept="audio/*,video/*">
 
-    <div class="media-list" id="list"></div>
-  </div>
+  <p id="fileName">Aucun fichier sélectionné</p>
 </section>
-
 <script>
 
 /* =====================
@@ -251,7 +239,14 @@ const btn=document.getElementById("play");
 btn.onclick=()=>{
   if(audio.paused) audio.play();
   else audio.pause();
-};
+const fileInput = document.getElementById("fileInput");
+const fileName = document.getElementById("fileName");
+
+fileInput.addEventListener("change", () => {
+  if (fileInput.files.length > 0) {
+    fileName.textContent = "🎬 " + fileInput.files[0].name;
+  }
+});
 
 /* =====================
    WAVEFORM SAFE (FIX BUG)

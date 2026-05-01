@@ -148,14 +148,14 @@
 
   <!-- JavaScript -->
   <script>
-  /* Intro Animation smoother exit (4s) */
+  /* Intro Animation smoother exit (2.5s) */
   window.addEventListener("load", () => {
     const intro = document.getElementById("intro");
     setTimeout(()=>{
-      intro.style.transition="opacity 1.5s ease";
+      intro.style.transition="opacity 1.2s ease";
       intro.style.opacity="0";
-      setTimeout(()=>intro.style.display="none",1500);
-    }, 4000); // 4 seconds before fade
+      setTimeout(()=>intro.style.display="none",1200);
+    }, 2500); // 2.5 seconds before fade
   });
 
   /* Expandable Project Menus */
@@ -174,7 +174,15 @@
     alert("Gallery view coming soon!");
   }
 
-  /* Admin Menu */
+  /* Admin Menu shortcut CTRL+G */
+  document.addEventListener("keydown", e => {
+    if(e.ctrlKey && e.key.toLowerCase() === "g"){
+      const admin = document.getElementById("admin");
+      admin.style.display = admin.style.display === "none" ? "block" : "none";
+    }
+  });
+
+  /* Admin Menu file list */
   const fileInput = document.getElementById("fileInput");
   const fileList = document.getElementById("fileList");
   if(fileInput){
@@ -211,4 +219,3 @@
   };
 
   /* Waveform Animation */
-  const canvas = document.getElementById("waveform");

@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bado Elvis Nicaise - Cinema Sound Portfolio</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bado Elvis Nicaise - Sound Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- INTRO CINÉMA -->
+<!-- ================= INTRO CINEMA ================= -->
 <div id="intro">
-    <div class="intro-logo">NIKA CORPORATION</div>
+    <h1>BADO SOUND</h1>
 </div>
 
-<!-- NAV -->
+<!-- ================= NAVBAR ================= -->
 <nav class="navbar">
-    <div class="logo">🎬 BADO SOUND</div>
+    <div class="logo">🎬 NIKA CORPORATION</div>
     <ul>
         <li><a href="#home">Accueil</a></li>
-        <li><a href="#reel">Sound Reel</a></li>
+        <li><a href="#reel">Reel</a></li>
         <li><a href="#projects">Projets</a></li>
+        <li><a href="showreel.html">Showreel</a></li>
     </ul>
 </nav>
 
-<!-- HERO -->
-<section id="home" class="hero reveal">
-    <h1>BADO ELVIS NICAISE</h1>
-    <p>Chef opérateur son | Sound Designer | Cinéma & TV</p>
+<!-- ================= HERO ================= -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>BADO ELVIS NICAISE</h1>
+        <p>Chef opérateur son | Sound Designer | Cinéma & TV</p>
+    </div>
 </section>
 
-<!-- PROJETS QUICK -->
-<section class="row reveal">
+<!-- ================= NETFLIX ROW ================= -->
+<section class="row">
     <h2>🎬 Projets Cinéma</h2>
+
     <div class="cards">
         <div class="card">Soweto</div>
         <div class="card">Documentaire</div>
@@ -40,76 +44,82 @@
     </div>
 </section>
 
-<!-- REEL -->
-<section id="reel" class="reel reveal">
+<!-- ================= WAVEFORM REEL ================= -->
+<section id="reel" class="reel">
+
     <h2>🎧 Sound Reel</h2>
 
-    <audio id="audio" src="reel.mp3"></audio>
-    <button id="playBtn">▶ Play</button>
+    <div class="player">
+        <audio id="audio" src="reel.mp3"></audio>
 
-    <canvas id="waveform"></canvas>
+        <button id="playBtn">▶</button>
+
+        <canvas id="waveform"></canvas>
+    </div>
+
 </section>
 
-<!-- PROJETS -->
-<section id="projects" class="projects reveal">
+<!-- ================= PROJECTS ================= -->
+<section id="projects" class="projects">
+
     <h2>🎬 Filmography</h2>
 
-    <div class="project-card">Soweto - Sound Design</div>
-    <div class="project-card">Documentaire - Mixage</div>
-    <div class="project-card">Fiction - Sound Design</div>
+    <div class="project-card">
+        <h3>Soweto</h3>
+        <p>Dramatique sonore historique</p>
+    </div>
+
+    <div class="project-card">
+        <h3>Documentaire</h3>
+        <p>Mixage & prise de son terrain</p>
+    </div>
+
+    <div class="project-card">
+        <h3>Fiction</h3>
+        <p>Sound design cinéma</p>
+    </div>
+
 </section>
 
-<!-- CREDITS -->
-<section class="credits reveal">
+<!-- ================= CREDITS ================= -->
+<section class="credits">
+
     <h2>Film Credits</h2>
 
-    <div class="credits-scroll">
-        <p>BADO ELVIS NICAISE</p>
-        <p>Sound Designer</p>
-        <p>Chef opérateur son</p>
-        <br>
-        <p>SOWETO - 2026</p>
-        <p>Sound Design & Montage</p>
-    </div>
+    <p>BADO ELVIS NICAISE</p>
+    <p>Sound Designer</p>
+    <p>Chef opérateur son</p>
+
 </section>
 
-<!-- INTRO SCRIPT -->
+<!-- ================= SCRIPT INTRO ================= -->
 <script>
 window.addEventListener("load", () => {
     const intro = document.getElementById("intro");
 
     setTimeout(() => {
-        intro.classList.add("hide");
-        setTimeout(() => intro.style.display = "none", 1000);
-    }, 2200);
+        intro.style.opacity = "0";
+        setTimeout(() => intro.style.display = "none", 800);
+    }, 2000);
 });
 </script>
 
-<!-- REVEAL SCROLL -->
-<script>
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-        }
-    });
-}, { threshold: 0.2 });
-
-document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-</script>
-
-<!-- AUDIO -->
+<!-- ================= WAVEFORM SCRIPT ================= -->
 <script>
 const audio = document.getElementById("audio");
 const canvas = document.getElementById("waveform");
 const ctx = canvas.getContext("2d");
 
-canvas.width = canvas.offsetWidth;
-canvas.height = canvas.offsetHeight;
+function resize(){
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+}
+resize();
+window.addEventListener("resize", resize);
 
 let audioCtx, analyser, source, dataArray;
 
-function initAudio() {
+function initAudio(){
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     analyser = audioCtx.createAnalyser();
 
@@ -121,45 +131,44 @@ function initAudio() {
     dataArray = new Uint8Array(analyser.frequencyBinCount);
 }
 
-function draw() {
+function draw(){
     requestAnimationFrame(draw);
-    if (!analyser) return;
+
+    if(!analyser) return;
 
     analyser.getByteTimeDomainData(dataArray);
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = "#38bdf8";
-    ctx.shadowBlur = 20;
-    ctx.shadowColor = "#38bdf8";
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
     ctx.beginPath();
+    ctx.strokeStyle = "#38bdf8";
+    ctx.lineWidth = 2;
 
     let x = 0;
     let slice = canvas.width / dataArray.length;
 
-    for (let i = 0; i < dataArray.length; i++) {
-        let y = (dataArray[i] / 128) * canvas.height / 2;
+    for(let i=0;i<dataArray.length;i++){
+        let v = dataArray[i]/128;
+        let y = v * canvas.height/2;
 
-        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        i === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
         x += slice;
     }
 
     ctx.stroke();
 }
 
-document.getElementById("playBtn").addEventListener("click", () => {
-    if (!audioCtx) initAudio();
+document.getElementById("playBtn").onclick = () => {
+    if(!audioCtx) initAudio();
 
-    if (audio.paused) {
+    if(audio.paused){
         audio.play();
         audioCtx.resume();
         draw();
     } else {
         audio.pause();
     }
-});
+};
 </script>
 
 </body>

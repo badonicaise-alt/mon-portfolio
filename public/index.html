@@ -41,18 +41,69 @@
   <section id="projects">
     <h2>Projects</h2>
 
-    <!-- Example Project Card -->
-    <div class="project-card">
-      <div class="project-bg" style="background-image:url('soweto-bg.jpg')"></div>
-      <div class="project-info">
-        <h4>Soweto</h4>
-        <p class="genre">Documentary</p>
-        <p class="description">A powerful documentary exploring Soweto’s cultural soundscape.</p>
-        <button class="play-btn" onclick="playMedia('soweto-sound.mp3')">▶</button>
+    <!-- Soweto -->
+    <div class="project-menu">
+      <h3 onclick="toggleSection('soweto')">Soweto</h3>
+      <div id="soweto" class="project-content">
+        <div class="project-card">
+          <div class="project-bg" style="background-image:url('soweto-bg.jpg')"></div>
+          <div class="project-info">
+            <h4>Soweto</h4>
+            <p class="genre">Documentary</p>
+            <p class="description">Exploring Soweto’s cultural soundscape.</p>
+            <button class="play-btn" onclick="playMedia('soweto-sound.mp3')">▶</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Add as many project-cards as you want -->
+    <!-- Documentary -->
+    <div class="project-menu">
+      <h3 onclick="toggleSection('documentary')">Documentary</h3>
+      <div id="documentary" class="project-content">
+        <div class="project-card">
+          <div class="project-bg" style="background-image:url('doc-bg.jpg')"></div>
+          <div class="project-info">
+            <h4>Documentary Project</h4>
+            <p class="genre">Documentary</p>
+            <p class="description">Human stories through sound and image.</p>
+            <button class="play-btn" onclick="playMedia('doc-sound.mp3')">▶</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fiction -->
+    <div class="project-menu">
+      <h3 onclick="toggleSection('fiction')">Fiction</h3>
+      <div id="fiction" class="project-content">
+        <div class="project-card">
+          <div class="project-bg" style="background-image:url('fiction-bg.jpg')"></div>
+          <div class="project-info">
+            <h4>Fiction Film</h4>
+            <p class="genre">Fiction</p>
+            <p class="description">Creative sound design in storytelling.</p>
+            <button class="play-btn" onclick="playMedia('fiction-sound.mp3')">▶</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Film -->
+    <div class="project-menu">
+      <h3 onclick="toggleSection('film')">Film</h3>
+      <div id="film" class="project-content">
+        <div class="project-card">
+          <div class="project-bg" style="background-image:url('film-bg.jpg')"></div>
+          <div class="project-info">
+            <h4>Film Sets</h4>
+            <p class="genre">Behind the Scenes</p>
+            <p class="description">Photos from sets where I worked as sound engineer and boom operator.</p>
+            <button class="play-btn" onclick="viewGallery()">▶</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Showreel Section -->
@@ -88,7 +139,7 @@
     </div>
   </section>
 
-  <!-- Hidden Admin Menu (only for you) -->
+  <!-- Hidden Admin Menu -->
   <section id="admin" style="display:none;">
     <h2>Admin Menu</h2>
     <input type="file" id="fileInput" multiple accept="audio/*,video/*,image/*">
@@ -97,13 +148,33 @@
 
   <!-- JavaScript -->
   <script>
-  /* Intro Animation */
+  /* Intro Animation smoother exit */
   window.addEventListener("load", () => {
     const intro = document.getElementById("intro");
-    setTimeout(()=>intro.style.display="none", 3000);
+    setTimeout(()=>{
+      intro.style.transition="opacity 1.5s ease";
+      intro.style.opacity="0";
+      setTimeout(()=>intro.style.display="none",1500);
+    }, 2500);
   });
 
-  /* Expandable Admin Menu */
+  /* Expandable Project Menus */
+  function toggleSection(id) {
+    const section = document.getElementById(id);
+    section.classList.toggle("active");
+  }
+
+  /* Play Media */
+  function playMedia(src) {
+    const audio = new Audio(src);
+    audio.play();
+  }
+
+  function viewGallery() {
+    alert("Gallery view coming soon!");
+  }
+
+  /* Admin Menu */
   const fileInput = document.getElementById("fileInput");
   const fileList = document.getElementById("fileList");
   if(fileInput){
@@ -115,12 +186,6 @@
         fileList.appendChild(div);
       });
     });
-  }
-
-  /* Play Media */
-  function playMedia(src) {
-    const audio = new Audio(src);
-    audio.play();
   }
 
   /* Cursor + Ripple */
@@ -157,19 +222,4 @@
   let t = 0;
   function draw(){
     requestAnimationFrame(draw);
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    let w = canvas.width;
-    let h = canvas.height;
-    for(let i=0;i<80;i++){
-      let x = i*(w/80);
-      let y = Math.sin(i*0.3+t)*30 + Math.cos(i*0.1+t)*20;
-      ctx.fillStyle = "#3bbfa6";
-      ctx.fillRect(x,h/2,y,2);
-    }
-    t += 0.03;
-  }
-  draw();
-  </script>
-
-</body>
-</html>
+    ctx.clearRect(

@@ -56,7 +56,6 @@ body::after {
   justify-content:center;
   align-items:center;
   z-index:2000;
-  animation:introFade 3s forwards;
 }
 
 .intro-logo {
@@ -72,11 +71,6 @@ body::after {
   0% { opacity:0; transform:scale(0.5); }
   50% { opacity:1; transform:scale(1.2); }
   100% { opacity:1; transform:scale(1); }
-}
-
-@keyframes introFade {
-  0% { opacity:1; }
-  100% { opacity:0; visibility:hidden; }
 }
 
 /* =====================
@@ -163,12 +157,47 @@ body::after {
   padding:100px 20px;
 }
 
+.project-menu {
+  margin:20px auto;
+  width:min(900px,95%);
+}
+
+.project-menu h3 {
+  background:#111827;
+  padding:16px;
+  border-left:4px solid var(--primary);
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s ease;
+  font-size:20px;
+}
+
+.project-menu h3:hover {
+  background:#1b263a;
+  border-color:var(--accent);
+}
+
+.project-content {
+  display:none;
+  margin-top:15px;
+}
+
+.project-content.active {
+  display:block;
+  animation:fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* Artistic project card */
 .project-card {
   position:relative;
   border-radius:12px;
   overflow:hidden;
-  margin:20px auto;
-  width:min(800px,90%);
+  margin:20px 0;
   box-shadow:0 6px 20px rgba(0,0,0,0.5);
 }
 
@@ -204,7 +233,7 @@ body::after {
 
 .play-btn {
   font-size:20px;
-  padding:8px 14px;
+  padding:10px 16px;
   background:var(--primary);
   border:none;
   border-radius:50%;
@@ -251,7 +280,7 @@ button:hover {
 }
 
 /* =====================
-   CREDITS (Marvel-style)
+   CREDITS
 ===================== */
 #credits {
   background:var(--bg);
@@ -268,8 +297,8 @@ button:hover {
   flex-direction:column;
   gap:20px;
   font-size:28px;
-  font-family:"Cinzel",serif; /* cinematic font */
-  animation:scrollUp 20s linear infinite; /* faster */
+  font-family:"Cinzel",serif;
+  animation:scrollUp 18s linear infinite; /* faster */
 }
 
 .scrolling-credits:hover {
@@ -322,7 +351,7 @@ button:hover {
 }
 
 /* =====================
-   ADMIN MENU (hidden)
+   ADMIN MENU
 ===================== */
 #admin {
   padding:40px 20px;
@@ -337,36 +366,10 @@ button:hover {
 }
 
 /* =====================
-   CUSTOM CURSOR + Ripple
+   CURSOR + Ripple
 ===================== */
 .cursor {
   position:fixed;
   top:0;left:0;
   width:20px;height:20px;
-  border:2px solid var(--primary);
-  border-radius:50%;
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  transition:transform 0.15s ease-out;
-  z-index:10000;
-}
-
-.ripple {
-  position:fixed;
-  width:40px;height:40px;
-  border:2px solid var(--accent);
-  border-radius:50%;
-  transform:translate(-50%,-50%);
-  animation:rippleAnim 0.6s ease-out;
-  pointer-events:none;
-}
-
-@keyframes rippleAnim {
-  from { transform:translate(-50%,-50%) scale(0.5); opacity:1; }
-  to { transform:translate(-50%,-50%) scale(2); opacity:0; }
-}
-
-/* =====================
-   RESPONSIVE
-===================== */
-@media(max-width:
+  border:2px

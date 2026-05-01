@@ -120,73 +120,6 @@ body::after {
 }
 
 /* =====================
-   PORTRAIT
-===================== */
-#portrait {
-  padding:80px 20px;
-  text-align:center;
-}
-
-#portrait img {
-  width:200px;
-  height:200px;
-  border-radius:50%;
-  object-fit:cover;
-  box-shadow:0 6px 20px rgba(0,0,0,0.5);
-  margin-bottom:20px;
-}
-
-/* =====================
-   ADMIN MENU
-===================== */
-#admin {
-  padding:40px 20px;
-  background:#111827;
-  color:var(--text);
-  border-top:2px solid var(--primary);
-}
-
-#admin h2 {
-  color:var(--accent);
-  margin-bottom:20px;
-}
-
-#admin label {
-  display:block;
-  margin-top:10px;
-  font-size:14px;
-  color:var(--muted);
-}
-
-#admin input, 
-#admin textarea, 
-#admin button {
-  width:100%;
-  margin-top:6px;
-  padding:10px;
-  border-radius:6px;
-  border:none;
-  font-family:"DM Sans",sans-serif;
-}
-
-#admin input, #admin textarea {
-  background:#0f172a;
-  color:var(--text);
-}
-
-#admin button {
-  background:var(--primary);
-  color:#fff;
-  cursor:pointer;
-  transition:0.3s;
-  margin-top:15px;
-}
-
-#admin button:hover {
-  background:var(--accent);
-}
-
-/* =====================
    PROJECTS
 ===================== */
 #projects {
@@ -216,15 +149,19 @@ body::after {
 .project-content {
   display:none;
   margin-top:15px;
-  opacity:0;
-  transition:opacity 0.8s ease;
 }
 
 .project-content.active {
   display:block;
-  opacity:1;
+  animation:fadeIn 0.8s ease;
 }
 
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* Artistic project card */
 .project-card {
   position:relative;
   border-radius:12px;
@@ -383,6 +320,46 @@ button:hover {
 }
 
 /* =====================
+   ADMIN MENU
+===================== */
+#admin {
+  padding:30px 20px;
+  background:#1b263a;
+  color:var(--accent);
+  border-top:2px solid var(--primary);
+}
+
+#admin h2 {
+  margin-bottom:15px;
+  color:var(--primary);
+}
+
+#editor {
+  width:100%;
+  min-height:200px;
+  background:#0f172a;
+  color:var(--text);
+  border:1px solid var(--primary);
+  border-radius:8px;
+  padding:10px;
+  font-family:monospace;
+}
+
+#admin button {
+  margin-top:10px;
+  padding:10px 20px;
+  background:var(--primary);
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+#admin button:hover {
+  background:var(--accent);
+}
+
+/* =====================
    CURSOR + Ripple
 ===================== */
 .cursor {
@@ -394,3 +371,19 @@ button:hover {
   pointer-events:none;
   transform:translate(-50%,-50%);
   transition:transform 0.15s ease-out;
+  z-index:10000;
+}
+
+.ripple {
+  position:fixed;
+  width:40px;height:40px;
+  border:2px solid var(--accent);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  animation:rippleAnim 0.6s ease-out;
+  pointer-events:none;
+}
+
+@keyframes rippleAnim {
+  from { transform:translate(-50%,-50%) scale(0.5); opacity:1; }
+  to { transform:translate(-50%

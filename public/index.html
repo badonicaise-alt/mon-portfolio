@@ -97,50 +97,63 @@ let analyser;
 let source;
 let dataArray;
 
-function setupAudio() {
-    audioCtx = new AudioContext();
+function initAudio() {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     analyser = audioCtx.createAnalyser();
 
     source = audioCtx.createMediaElementSource(audio);
     source.connect(analyser);
     analyser.connect(audioCtx.destination);
 
-    analyser.fftSize = 256;
+    analyser.fftSize = 512; // plus fin = plus smooth
     dataArray = new Uint8Array(analyser.frequencyBinCount);
 }
 
-function draw() {
-    requestAnimationFrame(draw);
+function drawWave() {
+    requestAnimationFrame(drawWave);
 
-    analyser.getByteFrequencyData(dataArray);
+    analyser.getByteTimeDomainData(dataArray);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#38bdf8";
+
+    ctx.beginPath();
+
+    let sliceWidth = canvas.width / dataArray.length;
     let x = 0;
-    let barWidth = 3;
 
     for (let i = 0; i < dataArray.length; i++) {
-        let barHeight = dataArray[i];
 
-        ctx.fillStyle = "#38bdf8";
-        ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+        let v = dataArray[i] / 128.0;
+        let y = v * canvas.height / 2;
 
-        x += barWidth + 2;
+        if (i === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+
+        x += sliceWidth;
     }
+
+    ctx.lineTo(canvas.width, canvas.height / 2);
+    ctx.stroke();
 }
 
-document.getElementById("playBtn").onclick = () => {
+document.getElementById("playBtn").addEventListener("click", () => {
 
-    if (!audioCtx) setupAudio();
+    if (!audioCtx) initAudio();
 
     if (audio.paused) {
         audio.play();
         audioCtx.resume();
-        draw();
+        drawWave();
     } else {
         audio.pause();
     }
-};
+});
 </script>
 <section class="credits">
 

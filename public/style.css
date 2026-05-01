@@ -376,18 +376,4 @@ button:hover {
   border-radius:50%;
   pointer-events:none;
   transform:translate(-50%,-50%);
-  transition:transform 0.15s ease-out;
-  z-index:10000;
-}
-
-.ripple {
-  position:fixed;
-  width:40px;height:40px;
-  border:2px solid var(--accent);
-  border-radius:50%;
-  transform:translate(-50%,-50%);
-  animation:rippleAnim 0.6s ease-out;
-  pointer-events:none;
-}
-
-@keyframes
+  transition:transform 0.15s ease-out

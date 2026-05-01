@@ -1,154 +1,16 @@
+/* ===== BASE CINÉMA ===== */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #0f172a;
-    color: white;
-    text-align: center;
-}
-body {
-    padding-top: 80px;
-}
-.container {
-    margin-top: 100px;
-}
-
-h1 {
-    font-size: 50px;
-    color: #38bdf8;
-}
-
-h2 {
-    font-size: 20px;
-    color: #94a3b8;
-}
-
-p {
-    width: 60%;
-    margin: auto;
-    margin-top: 20px;
-    line-height: 1.6;
-}
-
-.reel {
-    margin-top: 50px;
-}
-
-audio {
-    margin-top: 10px;
-    width: 300px;
-}
-
-button {
-    margin-top: 40px;
-    padding: 12px 25px;
-    border: none;
-    background: #38bdf8;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 8px;
-}
-
-button:hover {
-    background: white;
-}
-.projects {
-    margin-top: 70px;
-    padding: 20px;
-}
-
-.projects h2 {
-    font-size: 30px;
-    color: #38bdf8;
-    margin-bottom: 30px;
-}
-
-.project {
-    background: #1e293b;
-    margin: 20px auto;
-    padding: 20px;
-    width: 60%;
-    border-radius: 10px;
-    text-align: left;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-.project h3 {
-    color: #ffffff;
-    margin-bottom: 10px;
-}
-
-.project p {
-    color: #94a3b8;
-    width: 100%;
-    margin: 0;
-}
-.reel-player {
-    margin-top: 60px;
-}
-
-.player {
-    background: #111827;
-    padding: 20px;
-    width: 60%;
-    margin: auto;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.6);
-}
-
-#trackTitle {
-    color: #38bdf8;
-    margin-bottom: 10px;
-}
-
-#playBtn {
-    background: #38bdf8;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-top: 10px;
-    border-radius: 6px;
-}
-
-#progress {
-    width: 100%;
-    margin-top: 15px;
-}
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.container, .projects, .reel-player {
-    animation: fadeIn 1.2s ease-in-out;
-}
-
-/* effet cinéma sur les titres */
-h1, h2 {
-    letter-spacing: 1px;
-}
-
-/* effet plus “film studio” */
-body {
     background: radial-gradient(circle at top, #111827, #0f172a);
-}
-.project {
-    opacity: 0;
-    animation: fadeIn 1s ease-in-out forwards;
+    color: white;
 }
 
-.project:nth-child(1) { animation-delay: 0.2s; }
-.project:nth-child(2) { animation-delay: 0.4s; }
-.project:nth-child(3) { animation-delay: 0.6s; }
+/* ===== NAVBAR ===== */
 .navbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 20px 40px;
     background: rgba(0,0,0,0.6);
     position: fixed;
@@ -166,6 +28,8 @@ body {
     list-style: none;
     display: flex;
     gap: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar ul li a {
@@ -176,4 +40,71 @@ body {
 
 .navbar ul li a:hover {
     color: #38bdf8;
+}
+
+/* ===== STRUCTURE ===== */
+.container, .reel-player, .projects {
+    text-align: center;
+    margin-top: 120px;
+    padding: 20px;
+}
+
+/* ===== TITRES ===== */
+h1 {
+    font-size: 50px;
+    color: #38bdf8;
+}
+
+h2 {
+    color: #94a3b8;
+}
+
+/* ===== REEL PLAYER ===== */
+.reel-player {
+    margin-top: 80px;
+}
+
+audio {
+    width: 300px;
+    margin-top: 10px;
+}
+
+#playBtn {
+    background: #38bdf8;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+/* ===== PROJETS ===== */
+.projects {
+    margin-top: 80px;
+}
+
+.project {
+    background: #1e293b;
+    margin: 20px auto;
+    padding: 20px;
+    width: 60%;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* ===== ANIMATION CINÉMA ===== */
+.container, .projects, .reel-player {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

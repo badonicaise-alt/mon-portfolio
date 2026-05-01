@@ -489,3 +489,6 @@ section::before {
     background: radial-gradient(circle, transparent, rgba(0,0,0,0.4));
     pointer-events: none;
 }
+#waveform {
+    cursor: crosshair;
+}

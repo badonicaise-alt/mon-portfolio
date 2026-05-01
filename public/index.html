@@ -3,45 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bado Elvis Nicaise - Cinema Sound Portfolio</title>
+<title>Bado Elvis Nicaise - Studio Sound</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- INTRO CINÉMA -->
+<!-- INTRO STUDIO -->
 <div id="intro">
-    <div class="intro-logo">NIKA CORPORATION</div>
+    <div class="intro-logo">NIKA STUDIOS</div>
 </div>
 
-<!-- NAV -->
-<nav class="navbar">
+<!-- TOP BAR -->
+<header class="topbar">
     <div class="logo">🎬 BADO SOUND</div>
-    <ul>
-        <li><a href="#home">Accueil</a></li>
-        <li><a href="#reel">Sound Reel</a></li>
-        <li><a href="#projects">Projets</a></li>
-    </ul>
-</nav>
+    <nav>
+        <a href="#home">Accueil</a>
+        <a href="#reel">Reel</a>
+        <a href="#projects">Projets</a>
+    </nav>
+</header>
 
-<!-- HERO -->
-<section id="home" class="hero reveal">
-    <h1>BADO ELVIS NICAISE</h1>
-    <p>Chef opérateur son | Sound Designer | Cinéma & TV</p>
-</section>
-
-<!-- PROJETS QUICK -->
-<section class="row reveal">
-    <h2>🎬 Projets Cinéma</h2>
-    <div class="cards">
-        <div class="card">Soweto</div>
-        <div class="card">Documentaire</div>
-        <div class="card">Fiction</div>
+<!-- HERO NETFLIX -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>BADO ELVIS NICAISE</h1>
+        <p>Sound Designer • Mixage • Cinéma & TV</p>
+        <button class="cta">Voir le Reel</button>
     </div>
 </section>
 
-<!-- REEL -->
-<section id="reel" class="reel reveal">
+<!-- ROW NETFLIX -->
+<section class="netflix-row">
+    <h2>🎬 Projets récents</h2>
+    <div class="row-scroll">
+        <div class="card">Soweto</div>
+        <div class="card">Documentaire</div>
+        <div class="card">Fiction</div>
+        <div class="card">Sound Design</div>
+    </div>
+</section>
+
+<!-- REEL AUDIO -->
+<section id="reel" class="reel">
     <h2>🎧 Sound Reel</h2>
 
     <audio id="audio" src="reel.mp3"></audio>
@@ -50,17 +54,20 @@
     <canvas id="waveform"></canvas>
 </section>
 
-<!-- PROJETS -->
-<section id="projects" class="projects reveal">
+<!-- FILMOGRAPHY GRID -->
+<section id="projects" class="grid-section">
     <h2>🎬 Filmography</h2>
 
-    <div class="project-card">Soweto - Sound Design</div>
-    <div class="project-card">Documentaire - Mixage</div>
-    <div class="project-card">Fiction - Sound Design</div>
+    <div class="grid">
+        <div class="grid-item">Soweto — Sound Design</div>
+        <div class="grid-item">Documentaire — Mixage terrain</div>
+        <div class="grid-item">Fiction — Création sonore</div>
+        <div class="grid-item">Expérimental — Sound Art</div>
+    </div>
 </section>
 
 <!-- CREDITS -->
-<section class="credits reveal">
+<section class="credits">
     <h2>Film Credits</h2>
 
     <div class="credits-scroll">
@@ -68,37 +75,28 @@
         <p>Sound Designer</p>
         <p>Chef opérateur son</p>
         <br>
-        <p>SOWETO - 2026</p>
+        <p>SOWETO — 2026</p>
         <p>Sound Design & Montage</p>
     </div>
 </section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Bado Elvis Nicaise — Sound Studio</p>
+</footer>
 
 <!-- INTRO SCRIPT -->
 <script>
 window.addEventListener("load", () => {
     const intro = document.getElementById("intro");
-
     setTimeout(() => {
-        intro.classList.add("hide");
-        setTimeout(() => intro.style.display = "none", 1000);
-    }, 2200);
+        intro.style.opacity = "0";
+        setTimeout(() => intro.style.display = "none", 800);
+    }, 2000);
 });
 </script>
 
-<!-- REVEAL SCROLL -->
-<script>
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-        }
-    });
-}, { threshold: 0.2 });
-
-document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-</script>
-
-<!-- AUDIO -->
+<!-- AUDIO VISUALISER -->
 <script>
 const audio = document.getElementById("audio");
 const canvas = document.getElementById("waveform");
@@ -130,9 +128,7 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ctx.lineWidth = 2;
-    ctx.strokeStyle = "#38bdf8";
-    ctx.shadowBlur = 20;
-    ctx.shadowColor = "#38bdf8";
+    ctx.strokeStyle = "#e50914";
 
     ctx.beginPath();
 

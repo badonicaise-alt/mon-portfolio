@@ -27,15 +27,19 @@
 
 <!-- PROJECTS -->
 <section class="scene">
-    <h2>Projets</h2>
+    <h2>Upload (sons & médias)</h2>
 
-    <div class="cards">
-        <div class="card">Production Expérimentale</div>
-        <div class="card">Documentaire</div>
-        <div class="card">Fiction</div>
+    <div class="upload-box">
+        <p>Ajouter un son :</p>
+        <input type="file" id="audioUpload" accept="audio/*">
+
+        <p>Ajouter une image :</p>
+        <input type="file" id="imgUpload" accept="image/*">
+
+        <audio id="dynamicAudio" controls></audio>
+        <img id="previewImg" style="max-width:300px; margin-top:10px;">
     </div>
 </section>
-
 <!-- REEL -->
 <section class="scene">
     <h2>Sound Reel</h2>
@@ -63,6 +67,18 @@ window.addEventListener("load", () => {
         document.getElementById("intro").style.opacity = "0";
         setTimeout(() => document.getElementById("intro").remove(), 800);
     }, 1500);
+document.getElementById("audioUpload").addEventListener("change", function(e){
+    const file = e.target.files[0];
+    if(file){
+        document.getElementById("dynamicAudio").src = URL.createObjectURL(file);
+    }
+});
+
+document.getElementById("imgUpload").addEventListener("change", function(e){
+    const file = e.target.files[0];
+    if(file){
+        document.getElementById("previewImg").src = URL.createObjectURL(file);
+    }
 });
 
 /* SCENES FOCUS */

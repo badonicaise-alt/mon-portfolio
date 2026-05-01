@@ -50,3 +50,34 @@ button {
 button:hover {
     background: white;
 }
+.projects {
+    margin-top: 70px;
+    padding: 20px;
+}
+
+.projects h2 {
+    font-size: 30px;
+    color: #38bdf8;
+    margin-bottom: 30px;
+}
+
+.project {
+    background: #1e293b;
+    margin: 20px auto;
+    padding: 20px;
+    width: 60%;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.project h3 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.project p {
+    color: #94a3b8;
+    width: 100%;
+    margin: 0;
+}

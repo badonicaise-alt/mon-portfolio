@@ -22,31 +22,52 @@
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#showreel">Showreel</a></li>
+      <li><a href="#showreel">Sound Reel</a></li>
       <li><a href="#credits">Credits</a></li>
     </ul>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero" id="home">
-    <h1>TOYIBOULA</h1>
+    <h1>Bado Elvis Nicaise</h1>
     <p>Production Mixer & Sound Designer</p>
   </section>
 
   <!-- Projects Section -->
   <section id="projects">
     <h2>Projects</h2>
-    <div class="project-card">
-      <h3>Soweto</h3>
-      <audio controls src="soweto.mp3"></audio>
+
+    <div class="project-menu">
+      <h3 onclick="toggleSection('soweto')">Soweto</h3>
+      <div id="soweto" class="project-content">
+        <video controls src="soweto-film.mp4"></video>
+        <audio controls src="soweto-sound.mp3"></audio>
+      </div>
     </div>
-    <div class="project-card">
-      <h3>Documentary</h3>
-      <audio controls src="doc.mp3"></audio>
+
+    <div class="project-menu">
+      <h3 onclick="toggleSection('documentary')">Documentary</h3>
+      <div id="documentary" class="project-content">
+        <video controls src="doc1.mp4"></video>
+        <video controls src="doc2.mp4"></video>
+        <audio controls src="doc-sound.mp3"></audio>
+      </div>
     </div>
-    <div class="project-card">
-      <h3>Fiction</h3>
-      <audio controls src="fiction.mp3"></audio>
+
+    <div class="project-menu">
+      <h3 onclick="toggleSection('fiction')">Fiction</h3>
+      <div id="fiction" class="project-content">
+        <video controls src="fiction1.mp4"></video>
+        <audio controls src="fiction-sound.mp3"></audio>
+      </div>
+    </div>
+
+    <div class="project-menu">
+      <h3 onclick="toggleSection('film')">Film</h3>
+      <div id="film" class="project-content">
+        <img src="set-photo1.jpg" alt="Film set photo">
+        <img src="set-photo2.jpg" alt="Film set photo">
+      </div>
     </div>
   </section>
 
@@ -74,11 +95,28 @@
   <!-- JavaScript directly in HTML -->
   <script>
   /* =====================
-     Smooth Cursor
+     Expandable Project Menus
+  ====================== */
+  function toggleSection(id) {
+    const section = document.getElementById(id);
+    section.classList.toggle("active");
+  }
+
+  /* =====================
+     Smooth Cursor + Ripple
   ====================== */
   const cursor = document.querySelector(".cursor");
   document.addEventListener("mousemove", e => {
     cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+  });
+
+  document.addEventListener("click", e => {
+    const ripple = document.createElement("div");
+    ripple.className = "ripple";
+    ripple.style.left = e.clientX + "px";
+    ripple.style.top = e.clientY + "px";
+    document.body.appendChild(ripple);
+    setTimeout(()=>ripple.remove(),600);
   });
 
   /* =====================

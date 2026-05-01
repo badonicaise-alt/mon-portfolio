@@ -1,302 +1,125 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Studio Cinema 5.0</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Studio Cinema 5.0</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 
-<style>
-
-/* =====================
-   BASE
-===================== */
-:root{
-  --sky:#38bdf8;
-  --bg:#05070f;
-  --text:#e8eaf0;
-  --muted:rgba(255,255,255,0.5);
-  --card:#0f172a;
-}
-
-body{
-  margin:0;
-  font-family:"DM Sans",sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-}
-
-/* léger cinéma */
-body::before{
-  content:"";
-  position:fixed;inset:0;
-  background:radial-gradient(circle at top, rgba(56,189,248,0.15), transparent 60%);
-  pointer-events:none;
-}
-
-/* =====================
-   NAV (3 MENUS PROPRE)
-===================== */
-nav{
-  position:fixed;
-  top:0;left:0;right:0;
-  height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 30px;
-  background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(12px);
-  z-index:999;
-}
-
-.logo{
-  font-weight:600;
-  letter-spacing:2px;
-}
-
-.menu{
-  display:flex;
-  gap:20px;
-}
-
-.menu a{
-  text-decoration:none;
-  color:var(--muted);
-  font-size:12px;
-  letter-spacing:2px;
-  transition:0.3s;
-}
-
-.menu a:hover{
-  color:var(--sky);
-}
-
-/* dropdown simple */
-.dropdown{
-  position:relative;
-}
-
-.dropdown-content{
-  position:absolute;
-  top:25px;
-  background:#0b1220;
-  padding:10px;
-  display:none;
-  flex-direction:column;
-  gap:10px;
-  border:1px solid rgba(255,255,255,0.1);
-}
-
-.dropdown:hover .dropdown-content{
-  display:flex;
-}
-
-/* =====================
-   HERO
-===================== */
-.hero{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-}
-
-.hero h1{
-  font-size:60px;
-  color:var(--sky);
-}
-
-.hero p{
-  color:var(--muted);
-}
-
-/* =====================
-   SECTIONS
-===================== */
-section{
-  padding:100px 20px;
-}
-
-/* cards */
-.cards{
-  display:flex;
-  gap:20px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-
-.card{
-  background:var(--card);
-  padding:20px;
-  width:200px;
-  transition:0.3s;
-  border:1px solid rgba(255,255,255,0.05);
-}
-
-.card:hover{
-  transform:scale(1.05);
-  border-color:var(--sky);
-}
-
-/* =====================
-   WAVEFORM
-===================== */
-#waveform{
-  width:100%;
-  height:140px;
-  background:#0b1220;
-  border-radius:10px;
-}
-
-/* bouton */
-button{
-  padding:10px 20px;
-  background:var(--sky);
-  border:none;
-  cursor:pointer;
-  margin-top:10px;
-  border-radius:20px;
-}
-
-/* =====================
-   UPLOAD MEDIA (SANS CODE)
-===================== */
-.upload-box{
-  border:1px dashed rgba(255,255,255,0.2);
-  padding:20px;
-  text-align:center;
-  margin-top:20px;
-}
-
-.media-list{
-  margin-top:15px;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  font-size:12px;
-  color:var(--muted);
-}
-
-</style>
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css"/>
 </head>
-
 <body>
 
-<nav class="navbar">
-  <div class="logo">🎬 NIKA CORPORATION</div>
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
 
-  <ul>
-    <li><a href="#home">Accueil</a></li>
-    <li><a href="#projects">Projets</a></li>
-    <li><a href="#upload">Upload</a></li>
-    <li><a href="#reel">Showreel</a></li>
-    <li><a href="#">TOYIBOULA</a></li>
-  </ul>
-</nav>
-<section class="hero">
-  <h1>TOYIBOULA</h1>
-  <p>Production Mixer & Sound Designer</p>
-</section>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">🎬 NIKA CORPORATION</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#showreel">Showreel</a></li>
+      <li><a href="#credits">Credits</a></li>
+    </ul>
+  </nav>
 
-<section>
-  <h2>Projets</h2>
-  <div class="cards">
-    <div class="card">Soweto</div>
-    <div class="card">Doc</div>
-    <div class="card">Fiction</div>
-  </div>
-</section>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <h1>TOYIBOULA</h1>
+    <p>Production Mixer & Sound Designer</p>
+  </section>
 
-<section>
-  <h2>Sound Reel</h2>
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-card">
+      <h3>Soweto</h3>
+      <audio controls src="soweto.mp3"></audio>
+    </div>
+    <div class="project-card">
+      <h3>Documentary</h3>
+      <audio controls src="doc.mp3"></audio>
+    </div>
+    <div class="project-card">
+      <h3>Fiction</h3>
+      <audio controls src="fiction.mp3"></audio>
+    </div>
+  </section>
 
-  <audio id="audio" src="reel.mp3"></audio>
-  <button id="play">Play / Pause</button>
+  <!-- Showreel Section -->
+  <section id="showreel">
+    <h2>Sound Reel</h2>
+    <audio id="audio" src="reel.mp3"></audio>
+    <button id="play">Play / Pause</button>
+    <canvas id="waveform"></canvas>
+  </section>
 
-  <canvas id="waveform"></canvas>
-</section>
+  <!-- Marvel-style Credits -->
+  <section id="credits">
+    <div class="credits-container">
+      <div class="scrolling-credits">
+        <p>Soweto</p>
+        <p>Documentary</p>
+        <p>Fiction</p>
+        <p>Sound Reel</p>
+        <p>Experimental Project</p>
+      </div>
+    </div>
+  </section>
 
-<section id="upload" class="scene">
-  <h2>📁 Import Studio</h2>
-
-  <input type="file" id="fileInput" accept="audio/*,video/*">
-
-  <p id="fileName">Aucun fichier sélectionné</p>
-</section>
-<script>
-
-/* =====================
-   AUDIO SAFE
-===================== */
-const audio=document.getElementById("audio");
-const btn=document.getElementById("play");
-
-btn.onclick=()=>{
-  if(audio.paused) audio.play();
-  else audio.pause();
-const fileInput = document.getElementById("fileInput");
-const fileName = document.getElementById("fileName");
-
-fileInput.addEventListener("change", () => {
-  if (fileInput.files.length > 0) {
-    fileName.textContent = "🎬 " + fileInput.files[0].name;
-  }
-});
-
-/* =====================
-   WAVEFORM SAFE (FIX BUG)
-===================== */
-const canvas=document.getElementById("waveform");
-const ctx=canvas.getContext("2d");
-
-function resize(){
-  canvas.width=canvas.offsetWidth;
-  canvas.height=canvas.offsetHeight;
-}
-window.addEventListener("resize",resize);
-resize();
-
-let t=0;
-
-function draw(){
-  requestAnimationFrame(draw);
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  let w=canvas.width;
-  let h=canvas.height;
-
-  for(let i=0;i<80;i++){
-    let x=i*(w/80);
-    let y=Math.sin(i*0.3+t)*30+Math.cos(i*0.1+t)*20;
-
-    ctx.fillStyle="#38bdf8";
-    ctx.fillRect(x,h/2,y,2);
-  }
-
-  t+=0.03;
-}
-draw();
-
-/* =====================
-   MEDIA UPLOAD SIMPLE
-===================== */
-const file=document.getElementById("file");
-const list=document.getElementById("list");
-
-file.onchange=()=>{
-  [...file.files].forEach(f=>{
-    let div=document.createElement("div");
-    div.textContent="🎬 "+f.name;
-    list.appendChild(div);
+  <!-- JavaScript directly in HTML -->
+  <script>
+  /* =====================
+     Smooth Cursor
+  ====================== */
+  const cursor = document.querySelector(".cursor");
+  document.addEventListener("mousemove", e => {
+    cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
   });
-};
 
-</script>
+  /* =====================
+     Audio Player
+  ====================== */
+  const audio = document.getElementById("audio");
+  const btn = document.getElementById("play");
+  btn.onclick = () => {
+    if(audio.paused) audio.play();
+    else audio.pause();
+  };
+
+  /* =====================
+     Waveform Animation
+  ====================== */
+  const canvas = document.getElementById("waveform");
+  const ctx = canvas.getContext("2d");
+
+  function resize(){
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  window.addEventListener("resize", resize);
+  resize();
+
+  let t = 0;
+  function draw(){
+    requestAnimationFrame(draw);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let w = canvas.width;
+    let h = canvas.height;
+    for(let i=0;i<80;i++){
+      let x = i*(w/80);
+      let y = Math.sin(i*0.3+t)*30 + Math.cos(i*0.1+t)*20;
+      ctx.fillStyle = "#3bbfa6";
+      ctx.fillRect(x,h/2,y,2);
+    }
+    t += 0.03;
+  }
+  draw();
+  </script>
 
 </body>
 </html>

@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Portfolio - Bado Elvis Nicaise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bado Elvis Nicaise - Sound Designer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,24 +14,26 @@
     <h1>BADO SOUND</h1>
 </div>
 
+<!-- NAVBAR -->
 <nav class="navbar">
     <div class="logo">🎬 NIKA CORPORATION</div>
 
     <ul>
         <li><a href="#home">Accueil</a></li>
-        <li><a href="showreel.html">Showreel</a></li>
         <li><a href="#projects">Projets</a></li>
         <li><a href="#reel">Reel</a></li>
     </ul>
 </nav>
 
-<section class="hero" id="home">
+<!-- HERO -->
+<section id="home" class="hero">
     <div class="hero-content">
         <h1>BADO ELVIS NICAISE</h1>
         <p>Chef opérateur son | Sound Designer | Cinéma & TV</p>
     </div>
 </section>
 
+<!-- PROJETS RAPIDES -->
 <section class="row">
     <h2>🎬 Projets Cinéma</h2>
 
@@ -41,9 +44,8 @@
     </div>
 </section>
 
-<!-- ✅ AJOUT OBLIGATOIRE (sinon ton JS plante) -->
+<!-- AUDIO REEL -->
 <section id="reel" class="reel-player">
-
     <h2>🎧 Sound Reel</h2>
 
     <audio id="audio" src="reel.mp3"></audio>
@@ -51,46 +53,54 @@
     <button id="playBtn">▶ Play</button>
 
     <canvas id="waveform"></canvas>
-
 </section>
 
+<!-- PROJETS -->
 <section id="projects" class="projects">
 
-    <h2>🎬 Filmography / Projets sonores</h2>
+    <h2>🎬 Filmography</h2>
 
     <div class="project-card">
         <h3>🎧 Soweto</h3>
-        <p><strong>Type :</strong> Dramatique sonore historique</p>
-        <p><strong>Rôle :</strong> Sound design & montage audio</p>
+        <p>Dramatique sonore historique</p>
     </div>
 
     <div class="project-card">
         <h3>🎥 Documentaire</h3>
-        <p><strong>Rôle :</strong> Mixage son</p>
+        <p>Mixage & prise de son</p>
+    </div>
+
+    <div class="project-card">
+        <h3>🎬 Fiction</h3>
+        <p>Sound design</p>
     </div>
 
 </section>
 
+<!-- CREDITS -->
 <section class="credits">
     <h2>Film Credits</h2>
 
     <div class="credits-scroll">
         <p>BADO ELVIS NICAISE</p>
         <p>Sound Designer</p>
+        <p>Chef opérateur son</p>
     </div>
 </section>
 
-<!-- INTRO SCRIPT -->
+<!-- SCRIPT -->
 <script>
+
+// INTRO
 window.addEventListener("load", () => {
+    const intro = document.getElementById("intro");
     setTimeout(() => {
-        document.getElementById("intro").style.display = "none";
+        intro.style.opacity = "0";
+        setTimeout(() => intro.style.display = "none", 1000);
     }, 2000);
 });
-</script>
 
-<!-- AUDIO SCRIPT -->
-<script>
+// AUDIO
 const audio = document.getElementById("audio");
 const canvas = document.getElementById("waveform");
 const ctx = canvas.getContext("2d");
@@ -98,7 +108,10 @@ const ctx = canvas.getContext("2d");
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 
-let audioCtx, analyser, source, dataArray;
+let audioCtx;
+let analyser;
+let source;
+let dataArray;
 
 function initAudio() {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -116,10 +129,11 @@ function drawWave() {
     requestAnimationFrame(drawWave);
 
     analyser.getByteTimeDomainData(dataArray);
-
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    ctx.strokeStyle = "#38bdf8";
     ctx.beginPath();
+
     let sliceWidth = canvas.width / dataArray.length;
     let x = 0;
 
@@ -129,10 +143,10 @@ function drawWave() {
         x += sliceWidth;
     }
 
-    ctx.strokeStyle = "#38bdf8";
     ctx.stroke();
 }
 
+// PLAY
 document.getElementById("playBtn").addEventListener("click", () => {
 
     if (!audioCtx) initAudio();
@@ -145,6 +159,7 @@ document.getElementById("playBtn").addEventListener("click", () => {
         audio.pause();
     }
 });
+
 </script>
 
 </body>

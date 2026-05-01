@@ -256,3 +256,43 @@ audio {
         transform: scale(1);
     }
 }
+/* ===== PROJETS CINÉMA STYLE STUDIO ===== */
+
+.projects {
+    padding: 100px 20px;
+}
+
+.projects h2 {
+    text-align: center;
+    font-size: 40px;
+    color: #38bdf8;
+    margin-bottom: 40px;
+}
+
+/* cartes cinéma */
+.project-card {
+    background: rgba(15, 23, 42, 0.85);
+    border-left: 3px solid #38bdf8;
+    margin: 20px auto;
+    padding: 20px;
+    width: 70%;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* effet film hover */
+.project-card:hover {
+    transform: scale(1.02);
+    border-left: 3px solid white;
+}
+
+.project-card h3 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    color: #cbd5e1;
+    margin: 5px 0;
+}

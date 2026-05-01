@@ -5,6 +5,63 @@
     <title>Portfolio - Bado Elvis Nicaise</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">🎬 BADO SOUND</div>
+
+    <ul>
+        <li><a href="#home">Accueil</a></li>
+        <li><a href="#projects">Projets</a></li>
+        <li><a href="#reel">Reel</a></li>
+    </ul>
+</nav>
+
+<section id="home" class="container">
+
+    <h1>Bado Elvis Nicaise</h1>
+    <h2>Chef opérateur son | Sound Designer | Cinéma & TV</h2>
+
+    <p>
+        Portfolio de création sonore pour le cinéma, la télévision et les documentaires.
+    </p>
+
+</section>
+
+<section id="reel" class="reel-player">
+
+    <h2>🎧 Sound Reel</h2>
+
+    <audio id="audio" src="reel.mp3"></audio>
+
+    <button onclick="togglePlay()" id="playBtn">▶ Play</button>
+
+    <input type="range" id="progress" value="0">
+
+</section>
+
+<section id="projects" class="projects">
+
+    <h2>🎬 Projets</h2>
+
+    <div class="project">
+        <h3>Soweto</h3>
+        <p>Dramatique sonore inspirée des événements historiques.</p>
+    </div>
+
+    <div class="project">
+        <h3>Documentaire</h3>
+        <p>Travail de mixage et design sonore documentaire.</p>
+    </div>
+
+    <div class="project">
+        <h3>Fiction</h3>
+        <p>Création d’univers sonores pour films et séries.</p>
+    </div>
+
+</section>
+
 <script>
 const audio = document.getElementById("audio");
 const playBtn = document.getElementById("playBtn");
@@ -28,92 +85,6 @@ progress.addEventListener("input", () => {
     audio.currentTime = (progress.value / 100) * audio.duration;
 });
 </script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    document.body.style.opacity = "0";
-    document.body.style.transition = "1s";
-
-    setTimeout(() => {
-        document.body.style.opacity = "1";
-    }, 100);
-});
-</script>
-<body>
-
-    <div class="container">
-
-        <h1 class="title">Bado Elvis Nicaise</h1>
-        <h2>Chef opérateur son | Sound Designer | Cinéma & TV</h2>
-
-        <p>
-            Bienvenue sur mon portfolio. Je crée des univers sonores pour le cinéma,
-            la télévision et les documentaires.
-        </p>
-
-        <section class="reel">
-            <h3>🎧 Sound Reel</h3>
-
-            <audio controls>
-                <source src="reel.mp3" type="audio/mpeg">
-                Ton navigateur ne supporte pas l’audio.
-            </audio>
-        </section>
-
-        <button>Voir mes projets</button>
-
-    </div>
 
 </body>
 </html>
-<section class="projects">
-
-    <h2>🎬 Projets</h2>
-
-    <div class="project">
-
-        <h3>Soweto – Dramatique sonore</h3>
-        <p>
-            Adaptation radiophonique inspirée des événements de Soweto.
-            Travail sur la tension, les voix et l’espace sonore.
-        </p>
-
-    </div>
-
-    <div class="project">
-
-        <h3>Documentaire</h3>
-        <p>
-            Création et mixage sonore pour documentaire TV et cinéma.
-            Recherche d’authenticité et immersion.
-        </p>
-
-    </div>
-
-    <div class="project">
-
-        <h3>Fiction</h3>
-        <p>
-            Design sonore pour fiction cinéma et séries.
-            Construction d’univers narratifs audio.
-        </p>
-
-    </div>
-
-</section>
-<section class="reel-player">
-
-    <h2>🎧 Sound Reel</h2>
-
-    <div class="player">
-
-        <p id="trackTitle">Reel Audio - Bado Elvis Nicaise</p>
-
-        <audio id="audio" src="reel.mp3"></audio>
-
-        <button onclick="togglePlay()" id="playBtn">▶ Play</button>
-
-        <input type="range" id="progress" value="0" step="1">
-
-    </div>
-
-</section>

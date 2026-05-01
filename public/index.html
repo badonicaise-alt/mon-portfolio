@@ -50,14 +50,23 @@ window.addEventListener("load", () => {
 
     <h2>🎧 Sound Reel</h2>
 
-    <audio id="audio" src="reel.mp3"></audio>
+    <div class="player">
 
-    <button onclick="togglePlay()" id="playBtn">▶ Play</button>
+        <audio id="audio" src="reel.mp3"></audio>
 
-    <input type="range" id="progress" value="0">
+        <div class="controls">
+
+            <button id="playBtn">▶</button>
+
+            <div class="progress-container">
+                <input type="range" id="progress" value="0">
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
-
 <section id="projects" class="projects">
 
     <h2>🎬 Filmography / Projets sonores</h2>
@@ -92,12 +101,14 @@ const progress = document.getElementById("progress");
 function togglePlay() {
     if (audio.paused) {
         audio.play();
-        playBtn.textContent = "⏸ Pause";
+        playBtn.textContent = "⏸";
     } else {
         audio.pause();
-        playBtn.textContent = "▶ Play";
+        playBtn.textContent = "▶";
     }
 }
+
+playBtn.addEventListener("click", togglePlay);
 
 audio.addEventListener("timeupdate", () => {
     progress.value = (audio.currentTime / audio.duration) * 100;

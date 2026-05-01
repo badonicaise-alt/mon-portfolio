@@ -81,3 +81,34 @@ button:hover {
     width: 100%;
     margin: 0;
 }
+.reel-player {
+    margin-top: 60px;
+}
+
+.player {
+    background: #111827;
+    padding: 20px;
+    width: 60%;
+    margin: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+#trackTitle {
+    color: #38bdf8;
+    margin-bottom: 10px;
+}
+
+#playBtn {
+    background: #38bdf8;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 6px;
+}
+
+#progress {
+    width: 100%;
+    margin-top: 15px;
+}

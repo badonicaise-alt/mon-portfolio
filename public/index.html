@@ -32,6 +32,38 @@
     <p>Production Mixer & Sound Designer</p>
   </section>
 
+  <!-- Portrait Section -->
+  <section id="portrait">
+    <h2>Portrait</h2>
+    <img src="yourphoto1.jpg" alt="Portrait">
+    <p>Production Mixer & Sound Designer</p>
+  </section>
+
+  <!-- Admin Menu -->
+  <section id="admin">
+    <h2>Admin Menu</h2>
+
+    <!-- Modifier les textes -->
+    <label for="titleInput">Titre du projet :</label>
+    <input type="text" id="titleInput" placeholder="Titre...">
+
+    <label for="descInput">Description :</label>
+    <textarea id="descInput" rows="4"></textarea>
+
+    <label for="genreInput">Genre :</label>
+    <input type="text" id="genreInput" placeholder="Documentary / Fiction...">
+
+    <!-- Importer fichiers -->
+    <label for="fileInput">Importer fichiers (audio, vidéo, image) :</label>
+    <input type="file" id="fileInput" multiple>
+
+    <!-- Importer son de transition -->
+    <label for="transitionSound">Son de transition :</label>
+    <input type="file" id="transitionSound" accept="audio/*">
+
+    <button onclick="applyChanges()">Appliquer les modifications</button>
+  </section>
+
   <!-- Projects Section -->
   <section id="projects">
     <h2>Projects</h2>
@@ -39,7 +71,7 @@
     <!-- Soweto -->
     <div class="project-menu">
       <h3 onclick="toggleSection('soweto')">Soweto</h3>
-      <div id="soweto" class="project-content">
+      <div id="soweto" class="project-content transition-block">
         <div class="project-card">
           <div class="project-bg" style="background-image:url('soweto-bg.jpg')"></div>
           <div class="project-info">
@@ -55,7 +87,7 @@
     <!-- Documentary -->
     <div class="project-menu">
       <h3 onclick="toggleSection('documentary')">Documentary</h3>
-      <div id="documentary" class="project-content">
+      <div id="documentary" class="project-content transition-block">
         <div class="project-card">
           <div class="project-bg" style="background-image:url('doc-bg.jpg')"></div>
           <div class="project-info">
@@ -71,7 +103,7 @@
     <!-- Fiction -->
     <div class="project-menu">
       <h3 onclick="toggleSection('fiction')">Fiction</h3>
-      <div id="fiction" class="project-content">
+      <div id="fiction" class="project-content transition-block">
         <div class="project-card">
           <div class="project-bg" style="background-image:url('fiction-bg.jpg')"></div>
           <div class="project-info">
@@ -87,7 +119,7 @@
     <!-- Film -->
     <div class="project-menu">
       <h3 onclick="toggleSection('film')">Film</h3>
-      <div id="film" class="project-content">
+      <div id="film" class="project-content transition-block">
         <div class="project-card">
           <div class="project-bg" style="background-image:url('film-bg.jpg')"></div>
           <div class="project-info">
@@ -134,21 +166,13 @@
     </div>
   </section>
 
-  <!-- Admin Menu (hidden by default) -->
-  <section id="admin" style="display:none;">
-    <h2>Admin Menu</h2>
-    <textarea id="editor" rows="10" cols="60">
-      <!-- Exemple : tu peux modifier ou ajouter du code HTML pour tes projets -->
-    </textarea>
-    <button onclick="applyChanges()">Appliquer les modifications</button>
-  </section>
-
   <!-- JavaScript -->
   <script>
-  /* Expandable Project Menus */
+  /* Expandable Project Menus with transition + sound */
   function toggleSection(id) {
     const section = document.getElementById(id);
     section.classList.toggle("active");
+    playTransitionSound();
   }
 
   /* Play Media */
@@ -161,63 +185,39 @@
     alert("Gallery view coming soon!");
   }
 
-  /* Admin Menu shortcut CTRL+G */
-  document.addEventListener("keydown", e => {
-    if(e.ctrlKey && e.key.toLowerCase() === "g"){
-      const admin = document.getElementById("admin");
-      admin.style.display = admin.style.display === "none" ? "block" : "none";
+  /* Admin Menu Apply Changes */
+  function applyChanges(){
+    const title = document.getElementById("titleInput").value;
+    const desc = document.getElementById("descInput").value;
+    const genre = document.getElementById("genreInput").value;
+
+    const card = document.querySelector(".project-card .project-info");
+    if(card){
+      if(title) card.querySelector("h4").textContent = title;
+      if(desc) card.querySelector(".description").textContent = desc;
+      if(genre) card.querySelector(".genre").textContent = genre;
     }
+    alert("Modifications appliquées !");
+  }
+
+  /* Importer fichiers */
+  document.getElementById("fileInput").addEventListener("change", e=>{
+    [...e.target.files].forEach(file=>{
+      const div = document.createElement("div");
+      div.textContent = "📂 " + file.name;
+      document.getElementById("admin").appendChild(div);
+    });
   });
 
-  /* Apply changes from admin editor */
-  function applyChanges(){
-    const editor = document.getElementById("editor");
-    const projects = document.getElementById("projects");
-    projects.innerHTML += editor.value;
-    alert("Modifications appliquées !");
+  /* Transition Sound */
+  function playTransitionSound(){
+    const soundFile = document.getElementById("transitionSound").files[0];
+    if(soundFile){
+      const audio = new Audio(URL.createObjectURL(soundFile));
+      audio.play();
+    }
   }
 
   /* Cursor + Ripple */
   const cursor = document.querySelector(".cursor");
   document.addEventListener("mousemove", e => {
-    cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-  });
-  document.addEventListener("click", e => {
-    const ripple = document.createElement("div");
-    ripple.className = "ripple";
-    ripple.style.left = e.clientX + "px";
-    ripple.style.top = e.clientY + "px";
-    document.body.appendChild(ripple);
-    setTimeout(()=>ripple.remove(),600);
-  });
-
-  /* Audio Player */
-  const audioEl = document.getElementById("audio");
-  const btn = document.getElementById("play");
-  btn.onclick = () => {
-    if(audioEl.paused) audioEl.play();
-    else audioEl.pause();
-  };
-
-  /* Waveform Animation */
-  const canvas = document.getElementById("waveform");
-  const ctx = canvas.getContext("2d");
-  function resize(){
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-  window.addEventListener("resize", resize);
-  resize();
-  let t = 0;
-  function draw(){
-    requestAnimationFrame(draw);
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    let w = canvas.width;
-    let h = canvas.height;
-    for(let i=0;i<80;i++){
-      let x = i*(w/80);
-      let y = Math.sin(i*0.3+t)*30 + Math.cos(i*0.1+t)*20;
-      ctx.fillStyle = "#3bbfa6";
-      ctx.fillRect(x,h/2,y,2);
-    }
-    t

@@ -148,14 +148,14 @@
 
   <!-- JavaScript -->
   <script>
-  /* Intro Animation smoother exit */
+  /* Intro Animation smoother exit (4s) */
   window.addEventListener("load", () => {
     const intro = document.getElementById("intro");
     setTimeout(()=>{
       intro.style.transition="opacity 1.5s ease";
       intro.style.opacity="0";
       setTimeout(()=>intro.style.display="none",1500);
-    }, 2500);
+    }, 4000); // 4 seconds before fade
   });
 
   /* Expandable Project Menus */
@@ -215,11 +215,3 @@
   const ctx = canvas.getContext("2d");
   function resize(){
     canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-  window.addEventListener("resize", resize);
-  resize();
-  let t = 0;
-  function draw(){
-    requestAnimationFrame(draw);
-    ctx.clearRect(

@@ -64,7 +64,7 @@ body::after {
   color:var(--accent);
   letter-spacing:4px;
   opacity:0;
-  animation:introZoom 2s ease forwards;
+  animation:introZoom 2.5s ease forwards;
 }
 
 @keyframes introZoom {
@@ -298,7 +298,7 @@ button:hover {
   gap:20px;
   font-size:28px;
   font-family:"Cinzel",serif;
-  animation:scrollUp 18s linear infinite; /* faster */
+  animation:scrollUp 18s linear infinite;
 }
 
 .scrolling-credits:hover {
@@ -372,4 +372,22 @@ button:hover {
   position:fixed;
   top:0;left:0;
   width:20px;height:20px;
-  border:2px
+  border:2px solid var(--primary);
+  border-radius:50%;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  transition:transform 0.15s ease-out;
+  z-index:10000;
+}
+
+.ripple {
+  position:fixed;
+  width:40px;height:40px;
+  border:2px solid var(--accent);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  animation:rippleAnim 0.6s ease-out;
+  pointer-events:none;
+}
+
+@keyframes

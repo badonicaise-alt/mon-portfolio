@@ -1,5 +1,5 @@
 /* =====================
-   RESET
+   RESET CINÉMA STABLE
 ===================== */
 * {
   margin: 0;
@@ -8,21 +8,21 @@
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: Arial, sans-serif;
   background: #05070f;
-  color: #e8eaf0;
+  color: white;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 /* =====================
-   CINEMA LAYERS (OPTIMISÉ)
+   ATMOSPHÈRE CINÉMA (clean)
 ===================== */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at top, rgba(56,189,248,0.14), transparent 55%);
+  background: radial-gradient(circle at top, rgba(56,189,248,0.14), transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
@@ -38,12 +38,12 @@ body::after {
 }
 
 /* =====================
-   INTRO (plus stable)
+   INTRO (stable + propre)
 ===================== */
 #intro {
   position: fixed;
   inset: 0;
-  background: #000;
+  background: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,13 +52,13 @@ body::after {
 
 .intro-logo {
   font-size: 42px;
-  letter-spacing: 8px;
+  letter-spacing: 6px;
   color: #38bdf8;
-  animation: zoom 1.6s ease;
+  animation: zoom 1.8s ease;
 }
 
 @keyframes zoom {
-  from { transform: scale(1.15); opacity: 0; }
+  from { transform: scale(1.2); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
@@ -69,7 +69,7 @@ body::after {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 14px 30px;
+  padding: 14px 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -79,49 +79,51 @@ body::after {
   z-index: 1000;
 }
 
+/* LOGO STABLE (Nika + Toyiboula prêt) */
 .navbar .logo {
   font-weight: 600;
   letter-spacing: 2px;
   color: #38bdf8;
 }
 
-/* menus lisibles */
+/* MENU FIX (plus flou / caché bug) */
 .navbar ul {
   display: flex;
-  gap: 18px;
+  gap: 14px;
   list-style: none;
+  align-items: center;
 }
 
 .navbar a {
   text-decoration: none;
   font-size: 12px;
   letter-spacing: 2px;
-  color: rgba(232,234,240,0.7);
-  transition: 0.3s;
+  color: rgba(255,255,255,0.7);
   padding: 6px 10px;
-  border-radius: 4px;
+  border-radius: 6px;
+  transition: 0.25s ease;
 }
 
 .navbar a:hover {
-  color: #38bdf8;
   background: rgba(56,189,248,0.08);
+  color: #38bdf8;
 }
 
 /* =====================
-   SCENES (FOCUS CINEMA PROPRE)
+   SCENES (FOCUS CINÉMA PROPRE)
 ===================== */
 .scene {
   min-height: 100vh;
-  padding: 120px 40px;
-  opacity: 0.35;
-  transform: scale(0.98);
+  padding: 110px 20px;
+  opacity: 0.3;
+  transform: scale(0.98) translateY(25px);
   filter: blur(2px);
-  transition: 0.8s ease;
+  transition: 0.7s ease;
 }
 
 .scene.active {
   opacity: 1;
-  transform: scale(1);
+  transform: scale(1) translateY(0);
   filter: blur(0);
 }
 
@@ -133,7 +135,7 @@ body::after {
 }
 
 .hero h1 {
-  font-size: 60px;
+  font-size: 52px;
   color: #38bdf8;
   letter-spacing: 2px;
 }
@@ -144,21 +146,21 @@ body::after {
 }
 
 /* =====================
-   CARDS (plus net)
+   CARDS (corrigé overflow mobile)
 ===================== */
 .cards {
   display: flex;
-  gap: 18px;
+  gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .card {
   background: #111827;
-  padding: 20px;
+  padding: 18px;
   border-radius: 10px;
-  transition: 0.3s ease;
-  min-width: 180px;
+  transition: 0.3s;
+  min-width: 160px;
 }
 
 .card:hover {
@@ -167,17 +169,18 @@ body::after {
 }
 
 /* =====================
-   WAVEFORM (corrigé stabilité)
+   WAVEFORM (stabilité canvas)
 ===================== */
 #waveform {
   width: 100%;
   height: 150px;
   background: #0f172a;
   border-radius: 10px;
+  display: block;
 }
 
 /* =====================
-   BUTTONS (propre cinéma)
+   BUTTON (cinéma propre)
 ===================== */
 button {
   padding: 10px 22px;
@@ -185,7 +188,7 @@ button {
   border: none;
   border-radius: 30px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.25s ease;
   font-weight: 500;
 }
 
@@ -195,13 +198,13 @@ button:hover {
 }
 
 /* =====================
-   PROJECTS
+   PROJECTS (alignement corrigé)
 ===================== */
 .project-card {
   background: #111827;
   padding: 18px;
   margin: 10px auto;
-  width: 60%;
+  width: min(600px, 90%);
   border-left: 3px solid #38bdf8;
   transition: 0.3s;
 }
@@ -211,7 +214,7 @@ button:hover {
 }
 
 /* =====================
-   MOBILE FIX
+   MOBILE CLEAN FIX
 ===================== */
 @media (max-width: 768px) {
 
@@ -220,18 +223,19 @@ button:hover {
   }
 
   .scene {
-    padding: 90px 18px;
-  }
-
-  .project-card {
-    width: 90%;
+    padding: 90px 16px;
   }
 
   .navbar ul {
     gap: 8px;
+    flex-wrap: wrap;
   }
 
   .navbar a {
     font-size: 10px;
+  }
+
+  .card {
+    min-width: 140px;
   }
 }

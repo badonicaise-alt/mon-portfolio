@@ -2,9 +2,9 @@
    BASE
 ===================== */
 :root {
-  --primary:#3bbfa6;   /* deep teal */
-  --accent:#4fd1c5;    /* emerald turquoise */
-  --bg:#0f172a;        /* cinema dark blue */
+  --primary:#3bbfa6;   /* teal */
+  --accent:#4fd1c5;    /* turquoise */
+  --bg:#0f172a;        /* dark cinema blue */
   --text:#e8eaf0;
   --muted:rgba(255,255,255,0.6);
 }
@@ -43,34 +43,6 @@ body::after {
   opacity:0.04;
   pointer-events:none;
   z-index:0;
-}
-
-/* =====================
-   INTRO (Toyiboula)
-===================== */
-#intro {
-  position:fixed;
-  inset:0;
-  background:black;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:2000;
-}
-
-.intro-logo {
-  font-family:"Bebas Neue",sans-serif;
-  font-size:clamp(40px,8vw,100px);
-  color:var(--accent);
-  letter-spacing:4px;
-  opacity:0;
-  animation:introZoom 2s ease forwards;
-}
-
-@keyframes introZoom {
-  0% { opacity:0; transform:scale(0.5); }
-  50% { opacity:1; transform:scale(1.2); }
-  100% { opacity:1; transform:scale(1); }
 }
 
 /* =====================
@@ -132,21 +104,18 @@ body::after {
   font-size:clamp(34px,6vw,60px);
   color:var(--primary);
   letter-spacing:2px;
-  opacity:0;
-  transform:translateY(20px);
   animation:fadeInUp 2s ease forwards;
 }
 
 .hero p {
   color:var(--muted);
   margin-top:10px;
-  opacity:0;
-  transform:translateY(20px);
   animation:fadeInUp 2s ease forwards;
   animation-delay:0.5s;
 }
 
 @keyframes fadeInUp {
+  from { opacity:0; transform:translateY(20px); }
   to { opacity:1; transform:translateY(0); }
 }
 
@@ -351,24 +320,31 @@ button:hover {
 }
 
 /* =====================
-   ADMIN MENU
-===================== */
-#admin {
-  padding:40px 20px;
-  background:#0b1220;
-  color:var(--accent);
-}
-
-#fileList div {
-  margin:5px 0;
-  font-size:14px;
-  color:var(--text);
-}
-
-/* =====================
    CURSOR + Ripple
 ===================== */
 .cursor {
   position:fixed;
   top:0;left:0;
-  width:20px;height:20
+  width:20px;height:20px;
+  border:2px solid var(--primary);
+  border-radius:50%;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  transition:transform 0.15s ease-out;
+  z-index:10000;
+}
+
+.ripple {
+  position:fixed;
+  width:40px;height:40px;
+  border:2px solid var(--accent);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  animation:rippleAnim 0.6s ease-out;
+  pointer-events:none;
+}
+
+@keyframes rippleAnim {
+  from { transform:translate(-50%,-50%) scale(0.5); opacity:1; }
+  to { transform:translate(-50%,-50%) scale(2); opacity:0; }
+}

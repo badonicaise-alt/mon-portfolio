@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bado Elvis Nicaise - Portfolio Son</title>
+<title>Bado Elvis Nicaise - Cinema Sound Portfolio</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- INTRO -->
+<!-- INTRO CINÉMA -->
 <div id="intro">
-    <h1>BADO SOUND</h1>
+    <div class="intro-logo">NIKA CORPORATION</div>
 </div>
 
 <!-- NAV -->
@@ -19,17 +19,15 @@
     <div class="logo">🎬 BADO SOUND</div>
     <ul>
         <li><a href="#home">Accueil</a></li>
-        <li><a href="#reel">Reel</a></li>
+        <li><a href="#reel">Sound Reel</a></li>
         <li><a href="#projects">Projets</a></li>
     </ul>
 </nav>
 
 <!-- HERO -->
 <section id="home" class="hero reveal">
-    <div class="hero-content">
-        <h1>BADO ELVIS NICAISE</h1>
-        <p>Chef opérateur son | Sound Designer | Cinéma & TV</p>
-    </div>
+    <h1>BADO ELVIS NICAISE</h1>
+    <p>Chef opérateur son | Sound Designer | Cinéma & TV</p>
 </section>
 
 <!-- PROJETS QUICK -->
@@ -42,7 +40,7 @@
     </div>
 </section>
 
-<!-- AUDIO -->
+<!-- REEL -->
 <section id="reel" class="reel reveal">
     <h2>🎧 Sound Reel</h2>
 
@@ -52,13 +50,13 @@
     <canvas id="waveform"></canvas>
 </section>
 
-<!-- PROJECTS -->
+<!-- PROJETS -->
 <section id="projects" class="projects reveal">
     <h2>🎬 Filmography</h2>
 
     <div class="project-card">Soweto - Sound Design</div>
     <div class="project-card">Documentaire - Mixage</div>
-    <div class="project-card">Fiction - Création sonore</div>
+    <div class="project-card">Fiction - Sound Design</div>
 </section>
 
 <!-- CREDITS -->
@@ -81,15 +79,15 @@ window.addEventListener("load", () => {
     const intro = document.getElementById("intro");
 
     setTimeout(() => {
-        intro.style.opacity = "0";
-        setTimeout(() => intro.style.display = "none", 800);
-    }, 1800);
+        intro.classList.add("hide");
+        setTimeout(() => intro.style.display = "none", 1000);
+    }, 2200);
 });
 </script>
 
 <!-- REVEAL SCROLL -->
 <script>
-const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add("active");
@@ -133,7 +131,7 @@ function draw() {
 
     ctx.lineWidth = 2;
     ctx.strokeStyle = "#38bdf8";
-    ctx.shadowBlur = 12;
+    ctx.shadowBlur = 20;
     ctx.shadowColor = "#38bdf8";
 
     ctx.beginPath();
@@ -142,7 +140,7 @@ function draw() {
     let slice = canvas.width / dataArray.length;
 
     for (let i = 0; i < dataArray.length; i++) {
-        let y = (dataArray[i] / 128.0) * canvas.height / 2;
+        let y = (dataArray[i] / 128) * canvas.height / 2;
 
         i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
         x += slice;

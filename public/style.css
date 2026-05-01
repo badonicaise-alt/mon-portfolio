@@ -6,36 +6,19 @@ body {
     overflow-x: hidden;
 }
 
-/* CINEMA LIGHT */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at top, rgba(56,189,248,0.18), transparent 60%);
-}
-
-/* NOISE */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: url("https://grainy-gradients.vercel.app/noise.svg");
-    opacity: 0.04;
-}
-
 /* INTRO */
 #intro {
     position: fixed;
     inset: 0;
     background: black;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     z-index: 9999;
 }
 
 .intro-logo {
-    font-size: 42px;
+    font-size: 45px;
     color: #38bdf8;
     letter-spacing: 6px;
     animation: zoom 2s ease;
@@ -46,7 +29,7 @@ body::after {
     to {transform: scale(1); opacity:1;}
 }
 
-/* NAV */
+/* NAVBAR FIX (IMPORTANT CORRECTION) */
 .navbar {
     position: fixed;
     top: 0;
@@ -54,39 +37,56 @@ body::after {
     display: flex;
     justify-content: space-between;
     padding: 15px 40px;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(15px);
-    transition: 0.4s;
-    z-index: 1000;
+    background: rgba(0,0,0,0.9); /* PLUS OPAC */
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.6);
 }
 
-.navbar.scrolled {
-    background: rgba(0,0,0,0.9);
+.logo {
+    font-weight: bold;
+    color: #38bdf8;
 }
 
-/* SCENES = CINEMA SECTIONS */
-.scene {
-    min-height: 100vh;
-    padding: 120px 20px;
-    opacity: 0;
-    transform: translateY(60px);
-    transition: 1s ease;
+/* NAV LINKS FIX (boutons visibles + propres) */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
 }
 
-.scene.active {
-    opacity: 1;
-    transform: translateY(0);
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: 0.3s;
+    background: rgba(255,255,255,0.05);
+}
+
+.nav-links li a:hover {
+    background: #38bdf8;
+    color: black;
 }
 
 /* HERO */
 .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
 .hero h1 {
     font-size: 60px;
     color: #38bdf8;
-    text-shadow: 0 0 25px #38bdf8;
+}
+
+/* SECTIONS */
+section {
+    padding: 100px 20px;
 }
 
 /* CARDS */
@@ -104,7 +104,7 @@ body::after {
 }
 
 .card:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     background: #38bdf8;
     color: black;
 }
@@ -112,7 +112,7 @@ body::after {
 /* REEL */
 #waveform {
     width: 100%;
-    height: 150px;
+    height: 140px;
     background: #0f172a;
     margin-top: 20px;
     border-radius: 10px;
@@ -120,11 +120,12 @@ body::after {
 
 /* BUTTON */
 button {
-    padding: 10px 25px;
+    padding: 10px 20px;
     background: #38bdf8;
     border: none;
-    border-radius: 25px;
     cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
 /* PROJECTS */
@@ -136,12 +137,29 @@ button {
     border-left: 3px solid #38bdf8;
 }
 
-/* CREDITS */
-.credits-scroll {
-    animation: scroll 12s linear infinite;
+/* REVEAL */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s ease;
 }
 
-@keyframes scroll {
-    0% {transform: translateY(100%);}
-    100% {transform: translateY(-100%);}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+    .cards{
+        flex-direction: column;
+    }
+
+    .project-card{
+        width: 90%;
+    }
+
+    .hero h1{
+        font-size: 35px;
+    }
 }

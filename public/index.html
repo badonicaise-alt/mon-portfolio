@@ -28,11 +28,21 @@ progress.addEventListener("input", () => {
     audio.currentTime = (progress.value / 100) * audio.duration;
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.style.opacity = "0";
+    document.body.style.transition = "1s";
+
+    setTimeout(() => {
+        document.body.style.opacity = "1";
+    }, 100);
+});
+</script>
 <body>
 
     <div class="container">
 
-        <h1>Bado Elvis Nicaise</h1>
+        <h1 class="title">Bado Elvis Nicaise</h1>
         <h2>Chef opérateur son | Sound Designer | Cinéma & TV</h2>
 
         <p>

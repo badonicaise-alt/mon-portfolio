@@ -1,21 +1,21 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     background: #05070f;
     color: white;
     overflow-x: hidden;
 }
 
-/* GRADIENT CINEMA */
+/* CINEMA LIGHT */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle at top, rgba(56,189,248,0.12), transparent 60%);
+    background: radial-gradient(circle at top, rgba(56,189,248,0.15), transparent 60%);
     pointer-events: none;
 }
 
-/* NOISE FILM */
+/* NOISE */
 body::after {
     content: "";
     position: fixed;
@@ -25,7 +25,7 @@ body::after {
     pointer-events: none;
 }
 
-/* INTRO CINEMA */
+/* INTRO */
 #intro {
     position: fixed;
     inset: 0;
@@ -38,17 +38,17 @@ body::after {
 
 .intro-logo {
     font-size: 40px;
-    letter-spacing: 6px;
     color: #38bdf8;
+    letter-spacing: 6px;
     animation: zoom 2s ease;
 }
 
 @keyframes zoom {
-    from { transform: scale(1.3); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {transform: scale(1.3); opacity:0;}
+    to {transform: scale(1); opacity:1;}
 }
 
-/* NAV */
+/* NAVBAR UPGRADE */
 .navbar {
     position: fixed;
     top: 0;
@@ -56,16 +56,19 @@ body::after {
     display: flex;
     justify-content: space-between;
     padding: 15px 40px;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.5);
     backdrop-filter: blur(12px);
-    z-index: 1000;
+    transition: 0.4s;
+}
+
+.navbar.scrolled {
+    background: rgba(0,0,0,0.9);
 }
 
 /* HERO */
 .hero {
     height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -74,14 +77,10 @@ body::after {
 .hero h1 {
     font-size: 60px;
     color: #38bdf8;
+    text-shadow: 0 0 20px #38bdf8;
 }
 
-/* SECTIONS */
-section {
-    padding: 100px 20px;
-}
-
-/* CARDS */
+/* CARDS NETFLIX */
 .cards {
     display: flex;
     gap: 20px;
@@ -96,7 +95,7 @@ section {
 }
 
 .card:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
     background: #38bdf8;
     color: black;
 }
@@ -117,6 +116,7 @@ button {
     border: none;
     cursor: pointer;
     margin-top: 10px;
+    border-radius: 20px;
 }
 
 /* PROJECTS */
@@ -134,33 +134,6 @@ button {
 }
 
 @keyframes scroll {
-    0% { transform: translateY(100%); }
-    100% { transform: translateY(-100%); }
-}
-
-/* REVEAL CINEMA */
-.reveal {
-    opacity: 0;
-    transform: translateY(60px);
-    transition: 1s ease;
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 35px;
-    }
-
-    .cards {
-        flex-direction: column;
-    }
-
-    .project-card {
-        width: 90%;
-    }
+    0% {transform: translateY(100%);}
+    100% {transform: translateY(-100%);}
 }
